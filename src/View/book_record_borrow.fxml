@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import Controller.CommonBottom?>
+<?import Controller.RecordTop?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.BookRecordBorrow"
+            prefHeight="640" prefWidth="380">
+
+    <children>
+        <Label fx:id="recordTitle"  prefHeight="60.0" prefWidth="380.0" text="我的记录" alignment="CENTER" />
+        <RecordTop fx:id="recordTop" layoutY="60"/>
+        <ScrollPane layoutY="100" prefHeight="487.0" prefWidth="380.0">
+            <content>
+                <VBox fx:id="vBox" />
+
+            </content>
+        </ScrollPane>
+
+        <CommonBottom fx:id="commonBottom" />
+    </children>
+</AnchorPane>

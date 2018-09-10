@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Register">
+   <children>
+      <Label layoutX="67.0" layoutY="183.0" text="账号" />
+      <TextField layoutX="117.0" layoutY="178.0" fx:id="txt_id"/>
+      <Label layoutX="67.0" layoutY="231.0" text="Phone" />
+      <TextField layoutX="117.0" layoutY="226.0" fx:id="txt_contact"/>
+      <Label layoutX="67.0" layoutY="276.0" text="QQ" />
+      <TextField layoutX="117.0" layoutY="276.0" fx:id="txt_qq"/>
+      <Label layoutX="67.0" layoutY="320.0" text="密码" />
+      <PasswordField layoutX="117.0" layoutY="320.0" fx:id="pwdTxt_pwd"/>
+      <Label layoutX="52.0" layoutY="370.0" text="确认密码" />
+      <PasswordField layoutX="117.0" layoutY="370.0" fx:id="pwdTxt_confirm"/>
+      <Button layoutX="133.0" layoutY="422.0" mnemonicParsing="false" text="注册并登陆" fx:id="registerAndLoginBtn" onAction="#onRegisterAndLoginBtnClicked"/>
+   </children>
+</AnchorPane>

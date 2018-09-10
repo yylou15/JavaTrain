@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<fx:root prefHeight="80" prefWidth="360" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onItemClicked">
+   <children>
+      <ImageView fx:id="bookRequesterImgView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="85.0" prefHeight="80.0" prefWidth="275.0">
+         <children>
+             <HBox alignment="CENTER_LEFT" prefHeight="40" spacing="15">
+                 <Label fx:id="bookRequesterNameLabel" prefHeight="40.0" text="白云舒" />
+                 <Label fx:id="bookNameLabel" prefHeight="40.0" text="长安乱" />
+                 <Label fx:id="bookRequesterTimeLabel" prefHeight="40.0" text="2018.9.6" />
+             </HBox>
+
+            <Label fx:id="bookRequesterLeftLabel" prefHeight="40.0" text="希望可以借给我，谢谢，(`・ω・´) " />
+         </children>
+      </VBox>
+   </children>
+</fx:root>
