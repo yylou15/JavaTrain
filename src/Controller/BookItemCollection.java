@@ -133,10 +133,10 @@ public class BookItemCollection extends AnchorPane implements Initializable {
         System.out.println("cancelBtn Clicked");
         if(checkValid()) { // 上传
             if(cancelCollect()) {
-//                Alert information = new Alert(Alert.AlertType.INFORMATION, INFORMATION_SUCCESS);
-//                information.setTitle(COMMON_TITLE);
-//                information.showAndWait();
-//                onToBackBtnClicked();
+                Alert information = new Alert(Alert.AlertType.INFORMATION, "取消收藏成功");
+                information.setTitle(COMMON_TITLE);
+                information.showAndWait();
+                onToBackBtnClicked();
             } else {
                 Alert information = new Alert(Alert.AlertType.INFORMATION, GlobalConst.OPERATION_FAILED);
                 information.setTitle(COMMON_TITLE);

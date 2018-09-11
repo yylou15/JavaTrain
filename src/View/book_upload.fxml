@@ -16,9 +16,9 @@
             <TextField fx:id="bookNameTxt" />
             <Label text="作者" />
             <TextField fx:id="bookAuthorTxt" />
-            <Label text="出版社" />
+            <Label text="页数" />
             <TextField fx:id="bookPressTxt" />
-            <Label text="留言" />
+            <Label text="简介" />
             <TextArea fx:id="bookWordsTxt" prefHeight="150.0" prefWidth="380.0" />
          </children>
       </VBox>

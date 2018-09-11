@@ -10,6 +10,16 @@ import java.util.List;
 import db.DBUtil;
 import Utils.*;
 public class BookDao {
+    public static List<Book> getCollectionByName(String name) throws Exception{
+        Connection cn = DBUtil.getConnection();
+        PreparedStatement ptmt = cn.prepareStatement("SELECT * FROM tieyif4_user_collection WHERE uid = " + UserDao.getInfoByName(name).getUid());
+        ResultSet rs = ptmt.executeQuery();
+        List<Book> res = new ArrayList<Book>();
+        while (rs.next()){
+            res.add(BookDao.getBookByBid(rs.getInt("bid")));
+        }
+        return res;
+    }
     public static List<Book> getAllBook() throws Exception{
         Connection cn = DBUtil.getConnection();
         PreparedStatement ptmt = cn.prepareStatement("SELECT * FROM tieyif4_book_list");
@@ -20,6 +30,7 @@ public class BookDao {
             book.setBid(rs.getInt("bid"));
             book.setName(rs.getString("name"));
             book.setAuthor(rs.getString("author"));
+            book.setScore(rs.getInt("score"));
             book.setPagenum(rs.getInt("pagenum"));
             book.setIntroduction(rs.getString("introduction"));
             book.setStatus(rs.getInt("status"));
@@ -42,6 +53,7 @@ public class BookDao {
             book.setName(rs.getString("name"));
             book.setAuthor(rs.getString("author"));
             book.setPagenum(rs.getInt("pagenum"));
+            book.setScore(rs.getInt("score"));
             book.setIntroduction(rs.getString("introduction"));
             book.setStatus(rs.getInt("status"));
             book.setCount(rs.getInt("count"));
@@ -61,6 +73,7 @@ public class BookDao {
             book.setBid(rs.getInt("bid"));
             book.setName(rs.getString("name"));
             book.setAuthor(rs.getString("author"));
+            book.setScore(rs.getInt("score"));
             book.setPagenum(rs.getInt("pagenum"));
             book.setIntroduction(rs.getString("introduction"));
             book.setStatus(rs.getInt("status"));

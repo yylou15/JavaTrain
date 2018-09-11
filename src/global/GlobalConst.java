@@ -37,7 +37,7 @@ public class GlobalConst {
 
 
     // Alert
-    public final static String OPERATION_FAILED = "操作失败！";
+    public final static String OPERATION_FAILED = "操作失败！请检查信息！";
     public final static String INFORMATION_NOT_FULL = "请完善信息！";
 
     // 书页 一会换成enum

@@ -1,5 +1,6 @@
 package Controller;
 
+import dao.UserDao;
 import global.GlobalConst;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,10 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
+import javafx.scene.image.Image;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import model.User;
 public class UserInfo implements Initializable {
 
     private Main app;
@@ -45,7 +46,7 @@ public class UserInfo implements Initializable {
     private Label borrowNumLabel, lendNumLabel;
     private Label borrowNumTxt, lendNumTxt;
 
-    private String userName, userContact, userIntro, userScore;
+    private String userName, userContact, userIntro, userScore,avatarUrl;
     private String borrowNum, lendNum;
 
     @Override
@@ -55,13 +56,21 @@ public class UserInfo implements Initializable {
     }
 
     private void setData() {
-        getData();
+        try{
+            getData();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         infoBasicName.setText(userName);
         infoBasicContact.setText(userContact);
         infoBasicIntro.setText(userIntro);
         infoScoreMiddle.setText(userScore);
         borrowNumTxt.setText(borrowNum);
         lendNumTxt.setText(lendNum);
+
+        String imagePath = avatarUrl;
+        Image image = new Image(imagePath);
+        infoBasicImg.setImage(image);
     }
 
     private void setLayout() {
@@ -93,12 +102,24 @@ public class UserInfo implements Initializable {
         app.showActionChoose();
     }
 
-    private void getData() {
-        userName = GlobalConst.TEST_USER_NAME;
-        userContact = "1051651561";
-        userIntro = GlobalConst.TEST_USER_INTRO;
-        userScore = GlobalConst.TEST_USER_SCORE;
-        borrowNum = "12";
-        lendNum = "8";
+    private void getData() throws Exception{
+        User user = new User();
+        try {
+            user = UserDao.getInfoByName(Login.username);
+        }catch (Exception E){
+            System.out.println(E.getMessage());
+        }
+        avatarUrl = user.getAvatarUrl();
+        userName = user.getName();
+        userContact = "手机号：" +  user.getPhone();
+        userScore = String.valueOf(user.getScore())+"分";
+
+//        userName = GlobalConst.TEST_USER_NAME;
+//        userContact = "1051651561";
+//        userIntro = GlobalConst.TEST_USER_INTRO;
+        userIntro = "QQ：" + user.getQq();
+//        userScore = GlobalConst.TEST_USER_SCORE;
+        borrowNum = String.valueOf(user.getTotalBorrow());
+        lendNum = String.valueOf(user.getTotalLend());
     }
 }

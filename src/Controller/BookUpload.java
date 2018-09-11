@@ -1,5 +1,7 @@
 package Controller;
 
+import dao.BookDao;
+import dao.UserDao;
 import global.GlobalConst;
 import global.PageIndex;
 import javafx.event.ActionEvent;
@@ -14,7 +16,7 @@ import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import model.Book;
 public class BookUpload implements Initializable {
 
     private Main app;
@@ -72,7 +74,7 @@ public class BookUpload implements Initializable {
     }
 
     @FXML
-    private void onUploadBtnClicked(ActionEvent event) {
+    private void onUploadBtnClicked(ActionEvent event) throws Exception{
         System.out.println("uploadBtn Clicked");
         bookName = bookNameTxt.getText();
         bookAuthor = bookAuthorTxt.getText();
@@ -104,8 +106,19 @@ public class BookUpload implements Initializable {
         return true;
     }
 
-    private boolean uploadBook() {
-        System.out.println("upload book...");
-        return true;
+    private boolean uploadBook(){
+        try{
+            System.out.println("upload book...");
+            Book book = new Book();
+            book.setName(bookName);
+            book.setOwnerid(UserDao.getInfoByName(Login.username).getUid());
+            book.setAuthor(bookAuthor);
+            book.setIntroduction(bookWords);
+            book.setPagenum(Integer.parseInt(bookPress));
+            BookDao.insertBook(book);
+            return true;
+        }catch (Exception E){
+            return false;
+        }
     }
 }

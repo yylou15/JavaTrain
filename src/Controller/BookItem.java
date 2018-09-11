@@ -123,7 +123,7 @@ public class BookItem extends AnchorPane implements Initializable {
 
     @FXML
     private void onItemClicked() {
-        System.out.println("BookItem Clicked");
+        System.out.println("BookItem Clicked" + belongId);
         // book info
         app.showBookInfo(belongId);
     }

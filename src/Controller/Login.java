@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 import Utils.*;
 public class Login implements Initializable{
-
+    public static String username;
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -81,6 +81,7 @@ public class Login implements Initializable{
         System.out.println(rs.getStatus());
         System.out.println(rs.getMsg());
         if(rs.getStatus()){
+            username = txtId.getText();
             app.showBookBorrow();
 //            app.showBookRecommend();
 //            app.showBookBorrow();
