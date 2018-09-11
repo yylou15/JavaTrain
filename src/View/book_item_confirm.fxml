@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.image.ImageView?>
+<fx:root onMouseClicked="#onItemClicked" prefHeight="80" prefWidth="360" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fx:id="confirmUserImgView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+        <VBox layoutX="95.0" prefHeight="80.0" prefWidth="275.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="80" spacing="15">
+                    <Label fx:id="confirmUserNameLabel" prefHeight="40.0" text="白云舒" />
+                    <Label fx:id="confirmBookLabel" prefHeight="40.0" text="长安乱" />
+                    <Label fx:id="confirmTimeLabel" prefHeight="40.0" text="2018.9.6" />
+                </HBox>
+
+            </children>
+        </VBox>
+    </children>
+</fx:root>
