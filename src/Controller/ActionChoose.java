@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-// hello
+// hello world
 public class ActionChoose implements Initializable {
 
     private Main app;
