@@ -4,7 +4,7 @@ import global.GlobalConst;
 import global.PageIndex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -25,6 +25,9 @@ public class BookRecordRequest implements Initializable {
         for(BookItemRequest bookItemRequest : bookItemRequestList) {
             app.registerBookItemRequest(bookItemRequest);
         }
+        for(BookItemConfirm bookItemConfirm : bookItemConfirmList) {
+            app.registerBookItemConfirm(bookItemConfirm);
+        }
         setFocus();
     }
     private void setFocus() {
@@ -38,13 +41,20 @@ public class BookRecordRequest implements Initializable {
     private VBox vBox;
     @FXML
     private CommonBottom commonBottom;
+    @FXML
+    private Label borrowRequestTitle, returnConfirmTitle;
 
     private String requesterName, bookName, requesterTime, requesterLeft;
     private String requesterImgPath;
 //    private Image requesterImg;
 
+    private String confirmUserName, confirmBookName, confirmTime;
+    private String confirmUserImgPath;
+
     private BookItemRequest bookItemRequest;
     private List<BookItemRequest> bookItemRequestList;
+    private BookItemConfirm bookItemConfirm;
+    private List<BookItemConfirm> bookItemConfirmList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,15 +63,21 @@ public class BookRecordRequest implements Initializable {
     }
 
     private void setLayout() {
+        getData();
         getBookItemRequestList();
+        getBookItemConfirmList();
+
+        vBox.getChildren().add(borrowRequestTitle);
         vBox.getChildren().addAll(bookItemRequestList);
+        vBox.getChildren().add(returnConfirmTitle);
+        vBox.getChildren().addAll(bookItemConfirmList);
 
         commonBottom.setLayoutY(588);
     }
 
     private void getBookItemRequestList(){
         bookItemRequestList = new ArrayList<>();
-        getData();
+//        getData();
         for(int i=0; i<10; i++) {
             bookItemRequest = new BookItemRequest(requesterName, bookName, requesterTime, requesterLeft,requesterImgPath, PageIndex.BOOK_RECORD_REQUEST);
 //            bookItemRequest.setBelongId(PageIndex.BOOK_RECORD_REQUEST);
@@ -69,10 +85,24 @@ public class BookRecordRequest implements Initializable {
         }
     }
 
+    private void getBookItemConfirmList() {
+        bookItemConfirmList = new ArrayList<>();
+//        getData();
+        for(int i=0; i<10; i++) {
+            bookItemConfirm = new BookItemConfirm(confirmUserName, confirmBookName, confirmTime, confirmUserImgPath, PageIndex.BOOK_RECORD_REQUEST);
+            bookItemConfirmList.add(bookItemConfirm);
+        }
+    }
+
     private void getData() {
+        // request
         requesterName = GlobalConst.TEST_USER_NAME;
         bookName = GlobalConst.TEST_BOOK_NAME;
         requesterTime = GlobalConst.TEST_USER_UPLOAD_TIME;
         requesterLeft = GlobalConst.TEST_REQUESTER_LEFT;
+        // confirm
+        confirmUserName = GlobalConst.TEST_USER_NAME;
+        confirmBookName = GlobalConst.TEST_BOOK_NAME;
+        confirmTime = GlobalConst.TEST_USER_UPLOAD_TIME;
     }
 }
