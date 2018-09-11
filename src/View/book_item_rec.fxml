@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root id="boo_item_rec_tab" prefHeight="200.0" prefWidth="170.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onItemClicked">
+      <ImageView fx:id="bookItemImgView" fitHeight="150.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="bookItemNameLabel" layoutX="15.0" layoutY="150.0" prefHeight="20.0" prefWidth="140.0" text="C++ Premier Plus" />
+      <Label fx:id="bookItemScoreLabel" layoutX="15.0" layoutY="176.0" text="8.9分" />
+      <Label fx:id="bookItemStatusLabel" layoutX="100" layoutY="176.0" text="空闲" />
+</fx:root>

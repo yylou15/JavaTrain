@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<?import Controller.CommonBottom?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.BookRecommend"
+            prefHeight="640" prefWidth="380">
+              <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+
+    <Label fx:id="recommendTitle"  prefHeight="60.0" prefWidth="380.0" text="每日推荐" alignment="CENTER" />
+    <ScrollPane layoutY="60.0" prefHeight="527.0" prefWidth="380">
+        <content>
+            <GridPane fx:id="bookGrid"/>
+        </content>
+    </ScrollPane>
+
+    <CommonBottom fx:id="commonBottom" />
+
+</AnchorPane>

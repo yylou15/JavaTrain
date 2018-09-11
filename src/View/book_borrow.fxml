@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<?import Controller.CommonBottom?>
+<AnchorPane prefHeight="640.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookBorrow">
+   <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="borrowTitle" prefHeight="60.0" prefWidth="380.0" text="图书借阅" alignment="CENTER" onMouseClicked="#getHolder"/>
+      <ScrollPane layoutY="60.0" prefHeight="527.0" prefWidth="380.0">
+         <content>
+            <VBox fx:id="vBox" />
+
+         </content>
+      </ScrollPane>
+
+      <CommonBottom fx:id="commonBottom" />
+   </children>
+</AnchorPane>

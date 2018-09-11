@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<fx:root onMouseClicked="#onItemClicked" prefHeight="130.0" prefWidth="360.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+    <children>
+        <ImageView fx:id="bookItemImgView" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+        <HBox layoutX="150.0" spacing="25">
+           <children>
+               <VBox fx:id="vBox" alignment="CENTER_LEFT" prefHeight="130.0" spacing="18.0">
+                   <children>
+                       <Label fx:id="bookItemNameLabel" text="长安乱" />
+                       <Label fx:id="bookItemAuthorLabel" text="韩寒 著" />
+                       <Label fx:id="bookItemScoreLabel" text="7.5分" />
+                   </children>
+               </VBox>
+   
+               <VBox alignment="CENTER_LEFT" spacing="14.0">
+                    <children>
+                        <Label fx:id="bookItemStatusLabel" text="申请中" />
+                        <Label fx:id="bookItemTimeLabel" text="2018.10.3" />
+                        <Button fx:id="cancelBtn" text="取消收藏" onMouseClicked="#onCancelBtnClicked"/>
+                    </children>
+               </VBox>
+           </children>
+        </HBox>
+    </children>
+</fx:root>

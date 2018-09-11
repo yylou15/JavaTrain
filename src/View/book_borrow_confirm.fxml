@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="640" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookBorrowConfirm">
+                 <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+   
+       <AnchorPane fx:id="requesterInfoTopAnchorPane" prefHeight="160.0" prefWidth="380.0">
+
+           <children>
+               <Label fx:id="borrowConfirmTitle" prefHeight="60.0" prefWidth="380.0" text="借书确认" alignment="CENTER" />
+               <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
+               <ImageView fx:id="infoTopImgView" fitHeight="132.0" fitWidth="132.0"  layoutY="65" pickOnBounds="true" preserveRatio="true" />
+               <VBox layoutX="180" layoutY="75" spacing="15">
+                  <children>
+                      <Label fx:id="infoTopNameLabel" text="白云舒" />
+                      <Label fx:id="infoTopContactLabel" text="131556160" />
+                      <Label fx:id="infoTopIntroLabel" text="头像无法显示，请重新加载" />
+                  </children>
+               </VBox>
+           </children>
+       </AnchorPane>
+   
+       <Label fx:id="infoMiddleScoreLabel" alignment="CENTER" layoutY="185.0" prefWidth="380" text="100分">
+           <font>
+               <Font size="78.0" />
+           </font>
+       </Label>
+
+       <HBox layoutY="320" spacing="20">
+           <children>
+               <Label  text="申请书籍" />
+               <Label fx:id="requestedBookLabel"   text="长安乱" />
+           </children>
+       </HBox>
+
+      <Label layoutY="360.0" prefWidth="380.0" text="申请者留言" />
+      <Label fx:id="requesterLeftLabel" layoutY="400.0" prefWidth="380.0" text="希望可以借给我，谢谢，(`・ω・´)" />
+
+      <Button fx:id="agreeBtn" layoutY="475.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="380.0" text="同意申请" onAction="#onAgreeBtnClicked"/>
+      <Button fx:id="denyBtn" layoutY="535.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="380.0" text="拒绝申请" onAction="#onDenyBtnClicked"/>
+   </children>
+
+</AnchorPane>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="640.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookInfo">
+      <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="bookInfoTitle" prefHeight="60.0" prefWidth="380.0" text="书籍信息" alignment="CENTER" />
+      <Button fx:id="toBackBtn" prefHeight="60.0" prefWidth="60" text="back" onAction="#onToBackBtnClicked"/>
+      <ImageView fx:id="bookimg" layoutY="60" fitHeight="231.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
+      <GridPane layoutX="166" layoutY="60" fx:id="bookInfoPane">
+
+      </GridPane>
+      <Label fx:id="bookNameLabel" layoutX="166.0" layoutY="14.0" text="书名" />
+      <Label fx:id="bookAuthorLabel" layoutX="166.0" layoutY="44.0" text="作者" />
+      <Label fx:id="bookPressLabel" layoutX="166.0" layoutY="77.0" text="出版社" />
+      <Label fx:id="bookLeftLabel" layoutX="166.0" layoutY="112.0" text="空闲数" />
+      <Label fx:id="bookBorrowAmountLabel" layoutX="166.0" layoutY="149.0" text="累借" />
+      <Label fx:id="bookScoreLabel" layoutX="166.0" layoutY="182.0" text="评分" />
+
+      <Label fx:id="bookNameTxt" layoutX="228.0" layoutY="14.0" text="长安乱" />
+      <Label fx:id="bookAuthorTxt" layoutX="228.0" layoutY="44.0" text="韩寒" />
+      <Label fx:id="bookPressTxt" layoutX="228.0" layoutY="77.0" text="中国青年出版社" />
+      <Label fx:id="bookLeftTxt" layoutX="228.0" layoutY="112.0" text="2" />
+      <Label fx:id="bookBorrowAmountTxt" layoutX="228.0" layoutY="149.0" text="233" />
+      <Label fx:id="bookScoreTxt" layoutX="228.0" layoutY="182.0" text="7.4分" />
+
+      <HBox layoutX="145" layoutY="276">
+         <Button fx:id="addCollectionBtn"  mnemonicParsing="false" text="收藏图书" onAction="#onAddCollectionBtnClicked"/>
+         <Button fx:id="uploadBookBtn"  mnemonicParsing="false" text="我有此书" onAction="#onUploadBookBtnClicked" />
+         <Button fx:id="addCommentBtn"  mnemonicParsing="false" text="撰写评价" onAction="#onAddCommentBtnClicked" />
+      </HBox>
+
+      <Label layoutY="320.0" text="图书简介" />
+      <Label layoutY="330.0" prefHeight="60" fx:id="bookIntroTxt"/>
+
+      <Label layoutY="400.0" text="书籍评价" />
+      <Label fx:id="readMoreComment" alignment="CENTER_RIGHT" layoutY="400.0" prefWidth="380" text="查看更多&gt;&gt;" onMouseClicked="#onReadMoreCommentClicked"/>
+       <!--<ScrollPane layoutY="388" prefHeight="100" prefWidth="380">-->
+          <!--<content>-->
+             <VBox fx:id="bookCommentVBox" layoutY="420" prefHeight="80" prefWidth="380"/>
+          <!--</content>-->
+       <!--</ScrollPane>-->
+
+      <Label layoutY="510.0" text="借阅列表" />
+      <Label fx:id="checkMoreBorrow" alignment="CENTER_RIGHT" layoutY="510" prefWidth="380" text="查看更多&gt;&gt;" onMouseClicked="#onCheckMoreBorrowClicked"/>
+      <!--<ScrollPane layoutY="527" prefWidth="380">-->
+          <VBox fx:id="bookBorrowListVBox" layoutY="530" prefHeight="80" prefWidth="380"/>
+      <!--</ScrollPane>-->
+
+   </children>
+</AnchorPane>

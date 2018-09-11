@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="640" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AddBookComment">
+              <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+    <children>
+        <Label fx:id="addBookCommentTitle" alignment="CENTER" prefHeight="60.0" prefWidth="380.0" text="撰写评论" />
+        <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
+
+        <VBox layoutY="60.0" prefWidth="380.0">
+            <children>
+                <Label text="评分" />
+                <TextField fx:id="bookScoreTxt" />
+                <Label text="评价" />
+                <!--<TextField fx:id="bookAuthorTxt" />-->
+                <!--<Label text="出版社" />-->
+                <!--<TextField fx:id="bookPressTxt" />-->
+                <!--<Label text="留言" />-->
+                <TextArea fx:id="bookWordsTxt" prefHeight="190.0" prefWidth="380.0" />
+            </children>
+        </VBox>
+        <Button fx:id="saveCommentBtn" layoutY="496.0" mnemonicParsing="false" onAction="#onSaveCommentBtnClicked" prefWidth="380.0" text="保存评论" />
+    </children>
+
+</AnchorPane>

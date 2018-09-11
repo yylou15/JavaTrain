@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root alignment="CENTER_LEFT" prefHeight="40" prefWidth="380" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+       <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="topBorrowRecord" mnemonicParsing="false" prefHeight="40.0" prefWidth="126.66" text="借书" />
+      <Button fx:id="topUploadRecord" mnemonicParsing="false" prefHeight="40.0" prefWidth="126.66" text="上传" />
+      <Button fx:id="topRequestRecord" mnemonicParsing="false" prefHeight="40.0" prefWidth="126.66" text="申请" />
+   </children>
+</fx:root>

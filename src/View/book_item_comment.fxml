@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root prefHeight="80.0" prefWidth="360.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  
+      <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+     <children>
+      <ImageView fx:id="bookCommentUserImgView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="85.0" prefHeight="80.0" prefWidth="218.0">
+         <children>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="218.0" spacing="15.0">
+               <children>
+                  <Label fx:id="bookCommentUserNameLabel" prefHeight="30.0" text="白云舒" />
+                  <Label fx:id="bookCommentUserScoreLabel" prefHeight="30.0" text="8分" />
+                  <Label fx:id="bookCommentUserTimeLabel" prefHeight="30.0" text="2018.5.6" />
+               </children>
+            </HBox>
+            <Label fx:id="bookCommentUserComLabel" prefHeight="50.0" prefWidth="218.0" text="虎头蛇尾" />
+         </children>
+      </VBox>
+      <Label fx:id="bookCommentUserLikeNumLabel" alignment="CENTER" layoutX="303.0" prefHeight="80.0" prefWidth="57.0" text="80" onMouseClicked="#onBookCommentUserLikeNumLabelClciked"/>
+   </children>
+</fx:root>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.BorrowerComment"
+            prefHeight="640" prefWidth="380.0">
+    <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+    <children>
+        <Label fx:id="userCommentTitle" alignment="CENTER" prefHeight="60.0" prefWidth="380.0" text="用户评价" />
+        <Button fx:id="toBackBtn" prefHeight="60.0" prefWidth="60" text="back" onAction="#onToBackBtnClicked"/>
+        <VBox layoutY="90.0" prefWidth="380.0" spacing="30.0">
+            <children>
+                <Label text="为对方评分" />
+                <HBox prefWidth="380.0" spacing="20.0">
+                    <children>
+                        <Slider fx:id="scoreSlider" prefHeight="18.0" prefWidth="300.0" />
+                        <Label fx:id="scoreLabel" text="Label" />
+                    </children>
+                </HBox>
+                <Label text="向对方留言" />
+                <TextArea fx:id="leftTxtArea" prefHeight="120.0" prefWidth="380.0" />
+            </children>
+        </VBox>
+        <Button fx:id="confirmBtn" layoutY="442.0" mnemonicParsing="false" prefWidth="380.0" text="评价并确认归还" onAction="#onConfirmBtnClicked"/>
+    </children>
+
+</AnchorPane>

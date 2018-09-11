@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+
+<fx:root prefHeight="52.0" prefWidth="380.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+      <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="bottomBorrowTab" mnemonicParsing="false" prefHeight="52.0" prefWidth="95.0" text="借书" />
+      <Button fx:id="bottomRecommendTab" mnemonicParsing="false" prefHeight="52.0" prefWidth="95.0" text="推荐" />
+      <Button fx:id="bottomRecordTab" mnemonicParsing="false" prefHeight="52.0" prefWidth="95.0" text="记录" />
+      <Button fx:id="bottomPersonTab" mnemonicParsing="false" prefHeight="52.0" prefWidth="95.0" text="个人" />
+   </children>
+</fx:root>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="640" prefWidth="380" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookUpload">
+       <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="uploadTitle" alignment="CENTER" prefHeight="60.0" prefWidth="380.0" text="上传图书" />
+      <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
+
+      <VBox layoutY="60.0" prefWidth="380.0">
+         <children>
+            <Label text="书名" />
+            <TextField fx:id="bookNameTxt" />
+            <Label text="作者" />
+            <TextField fx:id="bookAuthorTxt" />
+            <Label text="页数" />
+            <TextField fx:id="bookPressTxt" />
+            <Label text="简介" />
+            <TextArea fx:id="bookWordsTxt" prefHeight="150.0" prefWidth="380.0" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutY="400.0" prefHeight="150.0" prefWidth="380.0">
+         <children>
+            <ImageView fx:id="bookImgView1" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="bookImgView2" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="bookImgView3" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <Button fx:id="uploadBtn" layoutY="581.0" mnemonicParsing="false" onAction="#onUploadBtnClicked" prefWidth="380.0" text="保存并上传" />
+   </children>
+</AnchorPane>

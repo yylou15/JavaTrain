@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="640.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserInfoModify">
+       <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+    <Label fx:id="infoModifyTitle" prefHeight="60.0" prefWidth="380.0" text="修改个人信息" alignment="CENTER" />
+</AnchorPane>

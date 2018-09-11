@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="640" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ActionChoose">
+                 <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+   <children>
+   
+       <Label fx:id="actionChooseTitle" onMouseClicked="#getHolder" prefHeight="60.0" prefWidth="380.0" />
+       <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
+   
+       <GridPane fx:id="actionListPane" layoutY="90">
+
+       </GridPane>
+
+
+       <Button fx:id="modifyInfoBtn" onAction="#onModifyInfoBtnClicked" />
+       <Button fx:id="modifyPwdBtn" onAction="#onModifyPwdBtnClicked" />
+       <Button fx:id="lookCollectionBtn" onAction="#onLookCollectionBtnClicked" />
+       <Button fx:id="uploadBookBtn" onAction="#onUploadBookBtnClicked" />
+
+   </children>
+
+</AnchorPane>

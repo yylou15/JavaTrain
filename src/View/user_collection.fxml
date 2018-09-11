@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controller.UserCollection"
+            prefHeight="640" prefWidth="380.0">
+    <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+    <Label fx:id="collectionTitle" prefHeight="60.0" prefWidth="380.0" text="我的愿望单" alignment="CENTER" />
+    <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
+
+    <ScrollPane layoutY="60.0" prefHeight="580.0" prefWidth="380.0">
+        <content>
+            <VBox fx:id="vBox" />
+
+        </content>
+    </ScrollPane>
+
+</AnchorPane>
