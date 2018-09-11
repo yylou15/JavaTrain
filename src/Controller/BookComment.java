@@ -1,5 +1,8 @@
 package Controller;
 
+import dao.BookCommentDao;
+import dao.BookDao;
+import dao.UserDao;
 import global.GlobalConst;
 import global.PageIndex;
 import javafx.fxml.FXML;
@@ -12,7 +15,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 public class BookComment implements Initializable {
 
     private Main app;
@@ -66,19 +68,28 @@ public class BookComment implements Initializable {
 
     private void getBookCommentList() {
         bookCommentList = new ArrayList<>();
-        getData();
-        for(int i=0; i<10; i++) {
-            bookItemComment = new BookItemComment(userName, userGivenScore, userCreateTime, userComment, userLikeNum, userImgPath, fromId);
+        List<model.BookComment> res = getData();
+        System.out.println("res长度：" + res.size());
+        for(model.BookComment book:res){
+            bookItemComment = new BookItemComment(
+                    book.getUserName(), String.valueOf(book.getScore()), book.getCreateTime(), book.getComment(), String.valueOf(book.getLike()),
+                    UserDao.getAvatarUrl(Login.username), fromId
+            );
             bookItemComment.setBelongId(fromId);
             bookCommentList.add(bookItemComment);
         }
     }
 
-    private void getData() {
-        userName = GlobalConst.TEST_USER_NAME;
-        userGivenScore = GlobalConst.TEST_BOOK_SCORE;
-        userCreateTime  = GlobalConst.TEST_USER_UPLOAD_TIME;
-        userComment = GlobalConst.TEST_USER_COMMENT;
-        userLikeNum = "57";
+    private List<model.BookComment> getData() {
+        try{
+            return BookCommentDao.getCommentsByBookId(BookInfo.nowBid);
+        }catch (Exception e){
+            return null;
+        }
+//        userName = GlobalConst.TEST_USER_NAME;
+//        userGivenScore = GlobalConst.TEST_BOOK_SCORE;
+//        userCreateTime  = GlobalConst.TEST_USER_UPLOAD_TIME;
+//        userComment = GlobalConst.TEST_USER_COMMENT;
+//        userLikeNum = "57";
     }
 }

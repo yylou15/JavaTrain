@@ -13,42 +13,45 @@ import Utils.*;
 public class BookCommentDao {
     public static List<BookComment> getCommentsByBookId(int bid){
         Connection conn=DBUtil.getConnection();
-        String sql="select comment from tieyif4_book_comment where 'bid'="+bid;
+        String sql="select *  from tieyif4_book_comment where `bid`="+bid;
+        System.out.println(sql);
         try {
             PreparedStatement ptmt=conn.prepareStatement(sql);
             ResultSet rs=ptmt.executeQuery();
             List<BookComment> result=new ArrayList<BookComment>();
             while(rs.next()) {
                 BookComment bookComment=new BookComment();
-                bookComment.setCid(rs.getInt(1));
-                bookComment.setBid(rs.getInt(2));
-                bookComment.setUid(rs.getInt(3));
-                bookComment.setScore(rs.getInt(4));
-                bookComment.setComment(rs.getString(5));
-                bookComment.setCreateTime(rs.getString(6));
-                bookComment.setUserName(rs.getString(7));
-                bookComment.setLike(rs.getInt(8));
-                bookComment.setDislike(rs.getInt(9));
+                bookComment.setCid(rs.getInt("cid"));
+                bookComment.setBid(rs.getInt("bid"));
+                bookComment.setScore(rs.getInt("score"));
+                bookComment.setComment(rs.getString("comment"));
+                bookComment.setCreateTime(rs.getString("createtime"));
+                bookComment.setUserName(rs.getString("username"));
+                bookComment.setLike(rs.getInt("like"));
+                bookComment.setDislike(rs.getInt("dislike"));
                 result.add(bookComment);
-                return result;
             }
+            return result;
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally {
-            DBUtil.close(conn);
         }
         return null;
-
 
 
     }
     public static returnObj uploadComment(BookComment comment) {
         Connection conn=DBUtil.getConnection();
-        String sql="insert into tieyif4_book_comment(comment)values(?) ";
+        String sql="INSERT INTO `tieyif4_book_comment`(`bid`, `score`, `comment`, `createtime`, `username`, `like`, `dislike`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ptmt=conn.prepareStatement(sql);
-            ptmt.setString(1,comment.getComment());
+            ptmt.setInt(1,comment.getBid());
+            ptmt.setInt(2,comment.getScore());
+            ptmt.setString(3,comment.getComment());
+            ptmt.setString(4,comment.getCreateTime());
+            ptmt.setString(5,comment.getUserName());
+            ptmt.setInt(6,comment.getLike());
+            ptmt.setInt(7,comment.getDislike());
             ptmt.execute();
             returnObj rs=new returnObj();
             rs.setStatus(true);
@@ -58,8 +61,6 @@ public class BookCommentDao {
             returnObj rs=new returnObj();
             rs.setStatus(false);
             return rs;
-        }finally {
-            DBUtil.close(conn);
         }
 
 
@@ -79,8 +80,6 @@ public class BookCommentDao {
             returnObj rs=new returnObj();
             rs.setStatus(false);
             return rs;
-        }finally {
-            DBUtil.close(conn);
         }
     }
     public static returnObj updateComment(BookComment comment){
@@ -97,8 +96,6 @@ public class BookCommentDao {
             returnObj rs=new returnObj();
             rs.setStatus(false);
             return rs;
-        }finally {
-            DBUtil.close(conn);
         }
     }
 }

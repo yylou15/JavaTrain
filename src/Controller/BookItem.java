@@ -95,10 +95,10 @@ public class BookItem extends AnchorPane implements Initializable {
     }
 
     private void setData() {
-        bookItemNameLabel.setText(bookName);
-        bookItemAuthorLabel.setText(bookAuthor);
-        bookItemScoreLabel.setText(bookScore);
-        bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
+        bookItemNameLabel.setText("《" + bookName + "》");
+        bookItemAuthorLabel.setText("作者：" + bookAuthor);
+        bookItemScoreLabel.setText("页数：" + bookScore);
+//        bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
         bookItemStatusLabel.setText(bookStatusStr);
         bookItemTimeLabel.setText(bookTime);
         String s = "res/" + String.valueOf(bid) + ".jpg";

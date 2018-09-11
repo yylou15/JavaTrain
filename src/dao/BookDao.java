@@ -1,4 +1,6 @@
 package dao;
+import Controller.BookInfo;
+import Controller.Login;
 import model.Book;
 
 import java.sql.Connection;
@@ -128,6 +130,46 @@ public class BookDao {
             res.setStatus(false);
             res.setMsg(E.getMessage());
             return  res;
+        }
+    }
+
+    public static void collect(int uid,int bid){
+        try{
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ptmt = conn.prepareStatement("INSERT INTO tieyif4_user_collection VALUES (?,?)");
+            ptmt.setInt(1,uid);
+            ptmt.setInt(2,bid);
+            ptmt.execute();
+        }catch (Exception E){
+            return;
+        }
+    }
+    public static void canclecollect(int uid,int bid){
+        try{
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ptmt = conn.prepareStatement("DELETE FROM tieyif4_user_collection WHERE `uid`=? and `bid`=?");
+            ptmt.setInt(1,uid);
+            ptmt.setInt(2,bid);
+            ptmt.execute();
+        }catch (Exception E){
+            return;
+        }
+    }
+    public static boolean querycollection(int uid,int bid){
+        try{
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ptmt = conn.prepareStatement("SELECT * FROM tieyif4_user_collection WHERE `uid`=? and `bid`=?");
+            ptmt.setInt(1,uid);
+            ptmt.setInt(2,bid);
+            ResultSet rs = ptmt.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }catch (Exception E){
+            return false;
         }
     }
 }

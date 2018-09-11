@@ -1,6 +1,7 @@
 package Controller;
 
 import dao.BookDao;
+import dao.UserDao;
 import global.BookStatus;
 import global.GlobalConst;
 import global.PageIndex;
@@ -17,7 +18,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import javafx.scene.image.*;
 // 可以通过一个showBookInfo的参数来回到那个到它这边的页面
 public class BookInfo implements Initializable {
 
@@ -53,6 +54,8 @@ public class BookInfo implements Initializable {
     private Label bookIntroTxt;
     @FXML
     private GridPane bookInfoPane;
+    @FXML
+    private ImageView bookimg;
 
     // book info
     private String bookName, bookAuthor, bookPress, bookBorrowAmount, bookScore, bookIntro;
@@ -82,9 +85,22 @@ public class BookInfo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image image = new Image("res/" + nowBid + ".jpg");
+        bookimg.setImage(image);
         System.out.println("BookInfo initialize");
         setData();
         setLayout();
+        try {
+            if(BookDao.querycollection(UserDao.getInfoByName(Login.username).getUid() ,BookInfo.nowBid)){
+                System.out.println("你已经收藏了这本书！");
+                addCollectionBtn.setText(NOT_COLLECTED);
+            }else{
+                System.out.println("你没收藏这本书！");
+                addCollectionBtn.setText(COLLECTED);
+            }
+        }catch (Exception E){
+
+        }
     }
 
     private void setData() {
@@ -127,12 +143,14 @@ public class BookInfo implements Initializable {
     }
 
     @FXML
-    private void onAddCollectionBtnClicked() {
+    private void onAddCollectionBtnClicked() throws Exception{
         System.out.println("addCollectionBtn Clicked");
+
         // 单纯的数据库访问 对哦 这里应该还有一个Button的能否问题 甚至取消收藏
         String collectionStatus = addCollectionBtn.getText();
         if(collectionStatus.equals(COLLECTED)) {
             if(operateCollection(true)) {
+                BookDao.collect(UserDao.getInfoByName(Login.username).getUid() ,BookInfo.nowBid);
                 addCollectionBtn.setText(NOT_COLLECTED);
             } else {
                 Alert information = new Alert(Alert.AlertType.INFORMATION, GlobalConst.OPERATION_FAILED);
@@ -142,6 +160,7 @@ public class BookInfo implements Initializable {
         } else {
             if(operateCollection(false)) {
                 addCollectionBtn.setText(COLLECTED);
+                BookDao.canclecollect(UserDao.getInfoByName(Login.username).getUid() ,BookInfo.nowBid);
             } else {
                 Alert information = new Alert(Alert.AlertType.INFORMATION, GlobalConst.OPERATION_FAILED);
                 information.setTitle(COMMON_TITLE);
@@ -237,6 +256,8 @@ public class BookInfo implements Initializable {
             bookAuthor = book.getAuthor();
             bookPress = GlobalConst.TEST_BOOK_PRESS;
             bookBorrowAmount = String.valueOf(book.getCount());
+            bookIntro = book.getIntroduction();
+            bookScore = String.valueOf(book.getScore());
         }catch (Exception E){
             return;
         }

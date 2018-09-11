@@ -1,15 +1,19 @@
 package Controller;
 
+import dao.BookCommentDao;
+import dao.UserDao;
 import global.GlobalConst;
 import global.PageIndex;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
+import Utils.*;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
-
+import model.BookComment;
 public class AddBookComment implements Initializable {
 
     private Main app;
@@ -65,7 +69,7 @@ public class AddBookComment implements Initializable {
 
         // 判空
         if(checkValid()) { // 上传
-            if(saveComment()) {
+            if(saveComment().getStatus()) {
                 Alert information = new Alert(Alert.AlertType.INFORMATION, INFORMATION_SUCCESS);
                 information.setTitle(COMMON_TITLE);
                 information.showAndWait();
@@ -84,11 +88,28 @@ public class AddBookComment implements Initializable {
     }
 
     private boolean checkValid() {
+        try {
+            Integer.parseInt(bookScore);
+        }catch (Exception E){
+            return false;
+        }
+        if(bookScore.equals("")||bookWords.equals("")){
+            return false;
+        }
         return true;
     }
 
-    private boolean saveComment() {
-        System.out.println("save comment...");
-        return true;
+    private returnObj saveComment() {
+        BookComment comment = new BookComment();
+        comment.setBid(BookInfo.nowBid);
+        comment.setScore(Integer.parseInt(bookScore));
+        comment.setComment(bookWords);
+        comment.setUserName(Login.username);
+        comment.setLike(0);
+        comment.setDislike(0);
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        comment.setCreateTime(df.format(day));
+        return BookCommentDao.uploadComment(comment);
     }
 }

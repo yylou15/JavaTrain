@@ -183,4 +183,19 @@ public class UserDao {
         return res;
     }
 
+
+    public static String getAvatarUrl(String name){
+        try{
+            Connection conn = DBUtil.getConnection();
+            PreparedStatement ptmt = conn.prepareStatement("SELECT * FROM tieyif4_user_info WHERE `name` = " + name);
+            ResultSet rs = ptmt.executeQuery();
+            if(rs.next()){
+                 return rs.getString("avatarUrl");
+            }else {
+                return null;
+            }
+        }catch (Exception E){
+            return null;
+        }
+    }
 }
