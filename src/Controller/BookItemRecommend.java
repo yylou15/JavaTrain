@@ -98,6 +98,7 @@ public class BookItemRecommend extends AnchorPane implements Initializable {
     @FXML
     private void onItemClicked() {
         System.out.println("BookItemRecommend Clicked");
+        BookInfo.nowBid = bid;
         System.out.println(belongId);
         app.showBookInfo(belongId);
     }
