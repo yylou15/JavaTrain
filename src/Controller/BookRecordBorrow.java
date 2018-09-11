@@ -69,9 +69,9 @@ public class BookRecordBorrow implements Initializable {
         bookItemList = new ArrayList<>();
         getData();
         for(int i=0; i<10; i++) {
-            bookItem = new BookItem(bookName, bookAuthor, bookScore, bookStatus, bookTime, bookImgPath, PageIndex.BOOK_RECORD_BORROW);
-//            bookItem.setBelongId(PageIndex.BOOK_RECORD_BORROW);
-            bookItemList.add(bookItem);
+//            bookItem = new BookItem(bookName, bookAuthor, bookScore, bookStatus, bookTime, bookImgPath, PageIndex.BOOK_RECORD_BORROW);
+////            bookItem.setBelongId(PageIndex.BOOK_RECORD_BORROW);
+//            bookItemList.add(bookItem);
         }
     }
 

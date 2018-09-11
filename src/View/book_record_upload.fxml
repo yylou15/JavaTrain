@@ -5,11 +5,17 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 
 
 <?import Controller.RecordTop?>
 <?import Controller.CommonBottom?>
 <AnchorPane prefHeight="640" prefWidth="380" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookRecordUpload">
+    <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
     <children>
         <Label fx:id="recordTitle"  prefHeight="60.0" prefWidth="380.0" text="我的记录" alignment="CENTER" />
         <RecordTop fx:id="recordTop" layoutY="60"/>

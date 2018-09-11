@@ -6,11 +6,17 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane prefHeight="640.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookInfo">
+      <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
    <children>
       <Label fx:id="bookInfoTitle" prefHeight="60.0" prefWidth="380.0" text="书籍信息" alignment="CENTER" />
       <Button fx:id="toBackBtn" prefHeight="60.0" prefWidth="60" text="back" onAction="#onToBackBtnClicked"/>
-      <ImageView layoutY="60" fitHeight="231.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="bookimg" layoutY="60" fitHeight="231.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true" />
       <GridPane layoutX="166" layoutY="60" fx:id="bookInfoPane">
 
       </GridPane>

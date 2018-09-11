@@ -5,13 +5,19 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login">
+  <stylesheets>
+        <URL value="@login.css" />
+    </stylesheets>
    <children>
       <GridPane fx:id="gridPane" layoutX="80.0" layoutY="223.0">
-
       </GridPane>
-      <Button fx:id="loginBtn" layoutX="146.0" layoutY="343.0" mnemonicParsing="false" text="Button" onAction="#onLoginBtnClicked"/>
-      <Button fx:id="registerBtn" layoutX="146.0" layoutY="547.0" mnemonicParsing="false" text="Button" onAction="#onRegisterBtnClicked"/>
+      <Button fx:id="loginBtn" layoutX="72.0" layoutY="343.0" mnemonicParsing="false" onAction="#onLoginBtnClicked" prefHeight="27.0" prefWidth="256.0" text="Button" />
+      <Button fx:id="registerBtn" layoutX="72.0" layoutY="403.0" mnemonicParsing="false" onAction="#onRegisterBtnClicked" prefHeight="27.0" prefWidth="256.0" text="Button" />
    </children>
+   
 </AnchorPane>

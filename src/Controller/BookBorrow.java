@@ -88,7 +88,7 @@ public class BookBorrow implements Initializable {
             }
 
 
-            bookItem = new BookItem(book.getName(), book.getAuthor(), String.valueOf(book.getPagenum()), bookStatus, bookTime, bookImgPath, PageIndex.BOOK_BORROW);
+            bookItem = new BookItem(book.getBid(),book.getName(), book.getAuthor(), String.valueOf(book.getPagenum()), bookStatus, bookTime, "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536639768170&di=75abf1f0a7671488a1936dc652b95863&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F16%2F06%2F64%2F83G58PICEbM_1024.jpg", PageIndex.BOOK_BORROW);
             bookItemList.add(bookItem);
         }
     }

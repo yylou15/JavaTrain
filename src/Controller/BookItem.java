@@ -1,6 +1,7 @@
 package Controller;
 
 import Utils.BookStatusText;
+import dao.BookDao;
 import global.BookStatus;
 import global.GlobalConst;
 import global.PageIndex;
@@ -17,9 +18,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 public class BookItem extends AnchorPane implements Initializable {
-
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -50,6 +49,7 @@ public class BookItem extends AnchorPane implements Initializable {
     @FXML
     private Button confirmBtn; // 用于隐藏
 
+    private int bid;
     private String bookName, bookAuthor, bookScore, bookStatusStr, bookTime;
     private BookStatus bookStatus;
     // Time 只有在BORROWING与LENDING两种状态显示 即BORROWED下显示 在非记录下 统一显示最短的归还时间 确认归还在belongId为BookBorrow下为不可见
@@ -68,7 +68,8 @@ public class BookItem extends AnchorPane implements Initializable {
         }
     }
 
-    public BookItem(String bookName, String bookAuthor, String bookScore, BookStatus bookStatus, String bookTime, String bookImgPath, PageIndex belongId) {
+    public BookItem(int bid,String bookName, String bookAuthor, String bookScore, BookStatus bookStatus, String bookTime, String bookImgPath, PageIndex belongId) {
+        this.bid = bid;
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookScore = bookScore;
@@ -100,8 +101,12 @@ public class BookItem extends AnchorPane implements Initializable {
         bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
         bookItemStatusLabel.setText(bookStatusStr);
         bookItemTimeLabel.setText(bookTime);
-//        bookImg = new Image(GlobalConst.TEST_BOOK_IMG_PATH);
-//        bookItemImgView.setImage(bookImg);
+        String s = "res/" + String.valueOf(bid) + ".jpg";
+        System.out.println(s);
+        bookImg = new Image(s);
+
+//        bookImg = this.getToolkit().getImage(this.getClass().getResource("res/1.jpg"));;
+        bookItemImgView.setImage(bookImg);
     }
 
     private void setLayout() {
@@ -123,7 +128,8 @@ public class BookItem extends AnchorPane implements Initializable {
 
     @FXML
     private void onItemClicked() {
-        System.out.println("BookItem Clicked" + belongId);
+        BookInfo.nowBid = bid;
+        System.out.println("BookItem Clicked" + bid);
         // book info
         app.showBookInfo(belongId);
     }

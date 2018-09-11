@@ -6,10 +6,15 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 
 
 <fx:root prefHeight="80" prefWidth="360" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onItemClicked">
-   <children>
+       <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets><children>
       <ImageView fx:id="bookRequesterImgView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
       <VBox layoutX="85.0" prefHeight="80.0" prefWidth="275.0">
          <children>

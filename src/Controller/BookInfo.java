@@ -1,5 +1,6 @@
 package Controller;
 
+import dao.BookDao;
 import global.BookStatus;
 import global.GlobalConst;
 import global.PageIndex;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import model.Book;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.ResourceBundle;
 // 可以通过一个showBookInfo的参数来回到那个到它这边的页面
 public class BookInfo implements Initializable {
 
+    public static int nowBid;
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -228,11 +231,20 @@ public class BookInfo implements Initializable {
     }
 
     private void getBookInfoData() {
-        bookName = GlobalConst.TEST_BOOK_NAME;
-        bookAuthor = GlobalConst.TEST_BOOK_AUTHOR;
-        bookPress = GlobalConst.TEST_BOOK_PRESS;
-        bookBorrowAmount = "233";
-        bookScore = GlobalConst.TEST_BOOK_SCORE;
+        try {
+            Book book = BookDao.getBookByBid(nowBid);
+            bookName = book.getName();
+            bookAuthor = book.getAuthor();
+            bookPress = GlobalConst.TEST_BOOK_PRESS;
+            bookBorrowAmount = String.valueOf(book.getCount());
+        }catch (Exception E){
+            return;
+        }
+//        bookName = GlobalConst.TEST_BOOK_NAME;
+//        bookAuthor = GlobalConst.TEST_BOOK_AUTHOR;
+//        bookPress = GlobalConst.TEST_BOOK_PRESS;
+//        bookBorrowAmount = "233";
+//        bookScore = GlobalConst.TEST_BOOK_SCORE;
     }
 
     private void getBookCommentData() {

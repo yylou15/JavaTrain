@@ -4,8 +4,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane prefHeight="640" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookBorrowRequest">
-   <children>
+   
+    <stylesheets>
+        <URL value="@global.css" />
+    </stylesheets>
+    <children>
    
        <Label fx:id="borrowRequestTitle" alignment="CENTER" prefHeight="60.0" prefWidth="380.0" text="图书借阅申请" />
        <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />

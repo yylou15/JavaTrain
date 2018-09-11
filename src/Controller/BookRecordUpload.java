@@ -71,9 +71,9 @@ public class BookRecordUpload implements Initializable {
         bookItemList = new ArrayList<>();
         getData();
         for(int i=0; i<10; i++) {
-            bookItem = new BookItem(bookName, bookAuthor, bookScore, bookStatus, bookTime, bookImgPath, PageIndex.BOOK_RECORD_UPLOAD);
-            bookItem.setBelongId(PageIndex.BOOK_RECORD_UPLOAD);
-            bookItemList.add(bookItem);
+//            bookItem = new BookItem(bookName, bookAuthor, bookScore, bookStatus, bookTime, bookImgPath, PageIndex.BOOK_RECORD_UPLOAD);
+//            bookItem.setBelongId(PageIndex.BOOK_RECORD_UPLOAD);
+//            bookItemList.add(bookItem);
         }
     }
 
