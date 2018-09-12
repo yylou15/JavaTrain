@@ -1,7 +1,9 @@
 package Controller;
 
+import dao.BookDao;
 import global.GlobalConst;
 import global.PageIndex;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +14,8 @@ import java.util.ResourceBundle;
 
 public class LenderComment implements Initializable {
 
+    private int val;
+    public static int nowRid;
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -38,16 +42,26 @@ public class LenderComment implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setLayout();
+        setEvents();
     }
 
     private void setLayout() {
+        scoreSlider.setMin(-10);
+        scoreSlider.setMax(10);
+        scoreSlider.setValue(0);
+        scoreSlider.setShowTickLabels(true);
+        scoreSlider.setShowTickMarks(true);
+        scoreSlider.setMajorTickUnit(5);
+        scoreSlider.setMinorTickCount(1);
+        scoreSlider.setBlockIncrement(1);
 
+        scoreLabel.setText(String.format("%d", (int)scoreSlider.getValue()));
     }
 
     @FXML
     void onToBackBtnClicked() {
         System.out.println("toBackBtn Clicked");
-        app.showBookRecordUpload();
+        app.showBookRecordRequest();
     }
 
     @FXML
@@ -80,6 +94,16 @@ public class LenderComment implements Initializable {
 
     private boolean confirmReturn() {
         System.out.println("confirm return...");
+        BookDao.confirmReturn(nowRid, val);
         return true;
+    }
+
+    private void setEvents() {
+        scoreSlider.valueProperty().addListener((
+                ObservableValue< ? extends Number> ov, Number oldVal, Number newVal) -> {
+            this.val = (int)(double)newVal;
+            scoreLabel.setText(String.format("%d", (int)(double)newVal));
+        });
+
     }
 }

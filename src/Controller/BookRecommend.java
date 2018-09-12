@@ -1,19 +1,18 @@
 package Controller;
 
+import dao.BookDao;
 import global.BookStatus;
-import global.GlobalConst;
 import global.PageIndex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
-//import sun.security.krb5.internal.PAEncTSEnc;
+import model.Book;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
+//import sun.security.krb5.internal.PAEncTSEnc;
 
 public class BookRecommend implements Initializable {
 
@@ -52,11 +51,15 @@ public class BookRecommend implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("BookRecommend initialize");
-        setLayout();
+        try {
+            setLayout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private void setLayout() {
+    private void setLayout() throws Exception{
         // 图片轮播
 
         // 书籍Grid
@@ -78,20 +81,57 @@ public class BookRecommend implements Initializable {
     }
 
     // 封装List 获取书籍信息
-    private void getBookList() {
+    private void getBookList() throws Exception{
         bookList = new ArrayList<>();
-        getData();
+        List<Book> rs = getData();
+//        for(int i=0; i<10; i++) {
+//            bookItem = new BookItemRecommend(bookName, bookScore, bookStatus, bookImgPath, PageIndex.BOOK_RECOMMEND);
+////            bookItem.setBelongId(PageIndex.BOOK_RECOMMEND);
+//            bookList.add(bookItem);
+//        }
+
+        Collections.sort(rs, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                if(o1.getScore() < o2.getScore())
+                    return 1;
+                else if(o1.getScore() == o2.getScore())
+                    return 0;
+                return -1;
+            }
+        });
+
         for(int i=0; i<10; i++) {
-            bookItem = new BookItemRecommend(bookName, bookScore, bookStatus, bookImgPath, PageIndex.BOOK_RECOMMEND);
-//            bookItem.setBelongId(PageIndex.BOOK_RECOMMEND);
+            boolean status;
+            if(rs.get(i).getStatus()==1) {
+                status = true;
+            }else{
+                status = false;
+            }
+            bookItem = new BookItemRecommend(rs.get(i).getBid(), rs.get(i).getName(), String.valueOf(rs.get(i).getScore()), bookStatus, "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536639768170&di=75abf1f0a7671488a1936dc652b95863&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F16%2F06%2F64%2F83G58PICEbM_1024.jpg", PageIndex.BOOK_RECOMMEND);
             bookList.add(bookItem);
         }
+
+//        for(Book book : rs){
+//            boolean status;
+//            if(book.getStatus()==1) {
+//                status = true;
+//            }else{
+//                status = false;
+//            }
+//            bookItem = new BookItemRecommend(book.getBid(), book.getName(), String.valueOf(book.getScore()), bookStatus, "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536639768170&di=75abf1f0a7671488a1936dc652b95863&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F16%2F06%2F64%2F83G58PICEbM_1024.jpg", PageIndex.BOOK_RECOMMEND);
+//            bookList.add(bookItem);
+//        }
     }
 
-    private void getData() {
-        bookName = GlobalConst.TEST_BOOK_NAME;
-        bookScore = GlobalConst.TEST_BOOK_SCORE;
+
+
+    private List<Book> getData() throws Exception {
+//        bookName = GlobalConst.TEST_BOOK_NAME;
+//        bookScore = GlobalConst.TEST_BOOK_SCORE;
         bookStatus = BookStatus.FREE;
+
+        return BookDao.getValidBook();
     }
 
 }

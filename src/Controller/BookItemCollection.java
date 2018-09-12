@@ -1,6 +1,8 @@
 package Controller;
 
 import Utils.BookStatusText;
+import dao.BookDao;
+import dao.UserDao;
 import global.BookStatus;
 import global.GlobalConst;
 import global.PageIndex;
@@ -49,7 +51,8 @@ public class BookItemCollection extends AnchorPane implements Initializable {
     @FXML
     private Label bookItemTimeLabel;
 
-    private String bookName, bookAuthor, bookScore, bookStatusStr, bookTime;
+    private int bid;
+    private String bookName, bookAuthor, bookScore, bookStatusStr, bookTime,ownerid;
     private BookStatus bookStatus;
     // Time 只有在BORROWING与LENDING两种状态显示 即BORROWED下显示 在非记录下 统一显示最短的归还时间 确认归还在belongId为BookBorrow下为不可见
     private String bookImgPath;
@@ -69,7 +72,7 @@ public class BookItemCollection extends AnchorPane implements Initializable {
         }
     }
 
-    public BookItemCollection(String bookName, String bookAuthor, String bookScore, BookStatus bookStatus, String bookTime, String bookImgPath, PageIndex belongId) {
+    public BookItemCollection(int bid,String bookName, String bookAuthor, String bookScore, BookStatus bookStatus, String bookTime, String bookImgPath, PageIndex belongId) {
         this.bookName = bookName;
         this.bookAuthor = bookAuthor;
         this.bookScore = bookScore;
@@ -77,6 +80,7 @@ public class BookItemCollection extends AnchorPane implements Initializable {
         this.bookTime = bookTime;
         this.bookImgPath = bookImgPath;
         this.belongId = belongId;
+        this.bid = bid;
         System.out.println("BookItemCollection Construct invoked");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/book_item_collection.fxml"));
         loader.setRoot(this);
@@ -106,12 +110,22 @@ public class BookItemCollection extends AnchorPane implements Initializable {
     }
 
     private void setData() {
-        bookItemNameLabel.setText(bookName);
-        bookItemAuthorLabel.setText(bookAuthor);
-        bookItemScoreLabel.setText(bookScore);
+//        bookItemNameLabel.setText(bookName);
+//        bookItemAuthorLabel.setText(bookAuthor);
+//        bookItemScoreLabel.setText(bookScore);
+//        bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
+//        bookItemStatusLabel.setText(bookStatusStr);
+//        bookItemTimeLabel.setText(bookTime);
+        bookItemNameLabel.setText("《" + bookName + "》");
+        bookItemAuthorLabel.setText("作者：" + bookAuthor);
         bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
         bookItemStatusLabel.setText(bookStatusStr);
         bookItemTimeLabel.setText(bookTime);
+        String s = "res/" + String.valueOf(bid) + ".jpg";
+        System.out.println(s);
+        bookImg = new Image(s);
+
+        bookItemImgView.setImage(bookImg);
     }
 
     private void setLayout() {
@@ -125,6 +139,7 @@ public class BookItemCollection extends AnchorPane implements Initializable {
     private void onItemClicked() {
         System.out.println("BookItemCollection Clicked");
         // book info
+        BookInfo.nowBid = bid;
         app.showBookInfo(belongId);
     }
 
@@ -157,6 +172,11 @@ public class BookItemCollection extends AnchorPane implements Initializable {
 
     private boolean cancelCollect() {
         System.out.println("cancel collect...");
+        try {
+            BookDao.canclecollect(UserDao.getInfoByName(Login.username).getUid() ,BookInfo.nowBid);
+        }catch (Exception E){
+            return false;
+        }
         return true;
     }
 }

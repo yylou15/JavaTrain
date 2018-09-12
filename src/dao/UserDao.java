@@ -85,6 +85,28 @@ public class UserDao {
         }
     }
 
+    public static User getInfoByUid(int uid) throws Exception{
+        User user = new User();
+        Connection conn = DBUtil.getConnection();
+        PreparedStatement ptmt = conn.prepareStatement("SELECT * FROM tieyif4_user_info WHERE  `uid` = ?");
+        ptmt.setInt(1, uid);
+        ResultSet rs = ptmt.executeQuery();
+        if(rs.next()){
+            user.setName(rs.getString("name"));
+            user.setUid(rs.getInt("uid"));
+            user.setScore(rs.getInt("level_score"));
+            user.setStar(rs.getInt("level_star"));
+            user.setAvatarUrl(rs.getString("avatarUrl"));
+            user.setPhone(rs.getString("phone"));
+            user.setQq(rs.getString("qq"));
+            user.setTotalBorrow(rs.getInt("totalborrow"));
+            user.setTotalLend(rs.getInt("totallend"));
+            user.setIntroduction(rs.getString("introduction"));
+            return user;
+        }else {
+            return null;
+        }
+    }
 
     /*
      *  更新个人信息
@@ -187,7 +209,8 @@ public class UserDao {
     public static String getAvatarUrl(String name){
         try{
             Connection conn = DBUtil.getConnection();
-            PreparedStatement ptmt = conn.prepareStatement("SELECT * FROM tieyif4_user_info WHERE `name` = " + name);
+            PreparedStatement ptmt = conn.prepareStatement("SELECT * FROM tieyif4_user_info WHERE `name` = ?");
+            ptmt.setString(1, name);
             ResultSet rs = ptmt.executeQuery();
             if(rs.next()){
                  return rs.getString("avatarUrl");

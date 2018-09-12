@@ -4,6 +4,8 @@ import dao.BookDao;
 import dao.UserDao;
 import global.GlobalConst;
 import global.PageIndex;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,8 +17,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 import model.Book;
+import model.BookRecord;
+
+// 通过uid等于0来控制上传的记录
 public class BookUpload implements Initializable {
 
     private Main app;
@@ -57,11 +64,28 @@ public class BookUpload implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("BookUpload initialize");
         setLayout();
+        setEvents();
     }
 
     private void setLayout() {
+        img1 = new Image(GlobalConst.COMMON_IMG_BACKGROUD);
+        img2 = new Image(GlobalConst.COMMON_IMG_BACKGROUD);
+        img3 = new Image(GlobalConst.COMMON_IMG_BACKGROUD);
 
+        bookImgView1.setImage(img1);
+        bookImgView2.setImage(img2);
+        bookImgView3.setImage(img3);
+    }
+
+    private void setEvents() {
+        bookImgView1.imageProperty().addListener(new ChangeListener<Image>() {
+            @Override
+            public void changed(ObservableValue<? extends Image> observable, Image oldValue, Image newValue) {
+
+            }
+        });
     }
 
     @FXML
@@ -108,14 +132,27 @@ public class BookUpload implements Initializable {
 
     private boolean uploadBook(){
         try{
+            // 保存书籍信息
+            int userId = UserDao.getInfoByName(Login.username).getUid();
             System.out.println("upload book...");
             Book book = new Book();
             book.setName(bookName);
-            book.setOwnerid(UserDao.getInfoByName(Login.username).getUid());
+            book.setOwnerid(userId);
             book.setAuthor(bookAuthor);
-            book.setIntroduction(bookWords);
-            book.setPagenum(Integer.parseInt(bookPress));
+            book.setIntroduction("这是一本好书");
+            book.setPagenum(0);
+            book.setStatus(0); // 代表Free
             BookDao.insertBook(book);
+            // 创建记录
+            BookRecord record = new BookRecord();
+            int bid = BookDao.getBookId(userId, bookName);
+            record.setUid(0);
+            record.setBid(bid);
+            record.setLeft(bookWords);
+            Date day = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            record.setCreateTime(df.format(day));
+            record.setOwnerid(userId);
             return true;
         }catch (Exception E){
             return false;

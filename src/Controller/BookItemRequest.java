@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 public class BookItemRequest extends AnchorPane implements Initializable {
 
+    private  int bid;
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -30,6 +31,7 @@ public class BookItemRequest extends AnchorPane implements Initializable {
     @FXML
     private ImageView bookRequesterImgView;
 
+    private int rid;
     private String requesterName, bookName, requesterTime, requesterLeft;
     private String requesterImgPath;
     private Image requesterImg;
@@ -47,13 +49,15 @@ public class BookItemRequest extends AnchorPane implements Initializable {
         }
     }
 
-    public BookItemRequest(String requesterName, String bookName, String requesterTime, String requesterLeft, String requesterImgPath, PageIndex belongId) {
+    public BookItemRequest(int rid, int bid,String requesterName, String bookName, String requesterTime, String requesterLeft, String requesterImgPath, PageIndex belongId) {
+        this.rid = rid;
         this.requesterName = requesterName;
         this.bookName = bookName;
         this.requesterTime = requesterTime;
         this.requesterLeft = requesterLeft;
         this.requesterImgPath = requesterImgPath;
         this.belongId = belongId;
+        this.bid = bid;
         System.out.println("BookItemRequest Construct invoked");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/book_item_request.fxml"));
         loader.setRoot(this);
@@ -85,8 +89,9 @@ public class BookItemRequest extends AnchorPane implements Initializable {
         bookNameLabel.setText(bookName);
         bookRequesterTimeLabel.setText(requesterTime);
         bookRequesterLeftLabel.setText(requesterLeft);
-//        bookImg = new Image(GlobalConst.TEST_BOOK_IMG_PATH);
-//        bookItemImgView.setImage(bookImg);
+
+        requesterImg = new Image(requesterImgPath);
+        bookRequesterImgView.setImage(requesterImg);
     }
 
     private void setLayout() {
@@ -95,6 +100,8 @@ public class BookItemRequest extends AnchorPane implements Initializable {
 
     @FXML
     private void onItemClicked() {
+        BookInfo.nowBid = bid;
+        BookBorrowConfirm.nowRid = rid;
         System.out.println("BookItemRequest Clicked");
         app.showBookBorrowConfirm();
     }

@@ -10,6 +10,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="640.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookInfo">
+
       <stylesheets>
         <URL value="@global.css" />
     </stylesheets>
@@ -40,22 +41,15 @@
          <Button fx:id="addCommentBtn"  mnemonicParsing="false" text="撰写评价" onAction="#onAddCommentBtnClicked" />
       </HBox>
 
+
       <Label layoutY="320.0" text="图书简介" />
       <Label layoutY="330.0" prefHeight="60" fx:id="bookIntroTxt"/>
-
       <Label layoutY="400.0" text="书籍评价" />
       <Label fx:id="readMoreComment" alignment="CENTER_RIGHT" layoutY="400.0" prefWidth="380" text="查看更多&gt;&gt;" onMouseClicked="#onReadMoreCommentClicked"/>
-       <!--<ScrollPane layoutY="388" prefHeight="100" prefWidth="380">-->
-          <!--<content>-->
-             <VBox fx:id="bookCommentVBox" layoutY="420" prefHeight="80" prefWidth="380"/>
-          <!--</content>-->
-       <!--</ScrollPane>-->
-
-      <Label layoutY="510.0" text="借阅列表" />
-      <Label fx:id="checkMoreBorrow" alignment="CENTER_RIGHT" layoutY="510" prefWidth="380" text="查看更多&gt;&gt;" onMouseClicked="#onCheckMoreBorrowClicked"/>
-      <!--<ScrollPane layoutY="527" prefWidth="380">-->
-          <VBox fx:id="bookBorrowListVBox" layoutY="530" prefHeight="80" prefWidth="380"/>
-      <!--</ScrollPane>-->
+      <VBox fx:id="bookCommentVBox" layoutY="420" prefHeight="80" prefWidth="380"/>
+      <Label layoutY="525.0" text="借阅列表" />
+      <Label fx:id="checkMoreBorrow" alignment="CENTER_RIGHT" layoutY="525" prefWidth="380" text="查看更多&gt;&gt;" onMouseClicked="#onCheckMoreBorrowClicked"/>
+      <VBox fx:id="bookBorrowListVBox" layoutY="535" prefHeight="80" prefWidth="380"/>
 
    </children>
 </AnchorPane>

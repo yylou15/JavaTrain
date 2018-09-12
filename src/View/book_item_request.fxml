@@ -11,20 +11,20 @@
 <?import javafx.scene.text.*?>
 
 
-<fx:root prefHeight="80" prefWidth="360" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onItemClicked">
+<fx:root minHeight="100" prefWidth="360" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#onItemClicked">
        <stylesheets>
         <URL value="@global.css" />
     </stylesheets><children>
-      <ImageView fx:id="bookRequesterImgView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="85.0" prefHeight="80.0" prefWidth="275.0">
+      <ImageView fx:id="bookRequesterImgView" layoutY="10" fitHeight="80" fitWidth="80" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="85.0" minHeight="100" prefWidth="275.0">
          <children>
-             <HBox alignment="CENTER_LEFT" prefHeight="40" spacing="15">
-                 <Label fx:id="bookRequesterNameLabel" prefHeight="40.0" text="白云舒" />
-                 <Label fx:id="bookNameLabel" prefHeight="40.0" text="长安乱" />
-                 <Label fx:id="bookRequesterTimeLabel" prefHeight="40.0" text="2018.9.6" />
+             <HBox alignment="CENTER_LEFT" minHeight="40" spacing="15">
+                 <Label fx:id="bookRequesterNameLabel" minHeight="40.0" text="白云舒" wrapText="true"/>
+                 <Label fx:id="bookNameLabel" minHeight="40.0" text="长安乱" wrapText="true"/>
+                 <Label fx:id="bookRequesterTimeLabel" minHeight="40.0" text="2018.9.6" wrapText="true"/>
              </HBox>
 
-            <Label fx:id="bookRequesterLeftLabel" prefHeight="40.0" text="希望可以借给我，谢谢，(`・ω・´) " />
+            <Label fx:id="bookRequesterLeftLabel" minHeight="60.0" text="希望可以借给我，谢谢，(`・ω・´) " />
          </children>
       </VBox>
    </children>

@@ -72,8 +72,8 @@ public class BookComment implements Initializable {
         System.out.println("res长度：" + res.size());
         for(model.BookComment book:res){
             bookItemComment = new BookItemComment(
-                    book.getUserName(), String.valueOf(book.getScore()), book.getCreateTime(), book.getComment(), String.valueOf(book.getLike()),
-                    UserDao.getAvatarUrl(Login.username), fromId
+                    book.getUserName(), String.valueOf(book.getScore()), book.getCreateTime().split(" ")[0], book.getComment(), String.valueOf(book.getLike()),
+                    UserDao.getAvatarUrl(book.getUserName()), fromId
             );
             bookItemComment.setBelongId(fromId);
             bookCommentList.add(bookItemComment);

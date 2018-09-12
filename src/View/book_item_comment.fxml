@@ -10,25 +10,25 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root prefHeight="80.0" prefWidth="360.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="100" prefWidth="360.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   
       <stylesheets>
         <URL value="@global.css" />
     </stylesheets>
      <children>
-      <ImageView fx:id="bookCommentUserImgView" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="85.0" prefHeight="80.0" prefWidth="218.0">
+      <ImageView fx:id="bookCommentUserImgView" layoutY="10" fitHeight="80" fitWidth="80" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="90" minHeight="80" maxWidth="255">
          <children>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="218.0" spacing="15.0">
+            <HBox alignment="BOTTOM_LEFT" minHeight="30" prefWidth="255" spacing="15.0">
                <children>
-                  <Label fx:id="bookCommentUserNameLabel" prefHeight="30.0" text="白云舒" />
-                  <Label fx:id="bookCommentUserScoreLabel" prefHeight="30.0" text="8分" />
-                  <Label fx:id="bookCommentUserTimeLabel" prefHeight="30.0" text="2018.5.6" />
+                  <Label fx:id="bookCommentUserNameLabel" prefHeight="30.0" text="白云舒" wrapText="true"/>
+                  <Label fx:id="bookCommentUserScoreLabel" prefHeight="30.0" text="8分" wrapText="true"/>
+                  <Label fx:id="bookCommentUserTimeLabel" prefHeight="30.0" text="2018.5.6" wrapText="true"/>
                </children>
             </HBox>
-            <Label fx:id="bookCommentUserComLabel" prefHeight="50.0" prefWidth="218.0" text="虎头蛇尾" />
+            <Label fx:id="bookCommentUserComLabel" minHeight="70" prefWidth="255" text="虎头蛇尾" wrapText="true"/>
          </children>
       </VBox>
-      <Label fx:id="bookCommentUserLikeNumLabel" alignment="CENTER" layoutX="303.0" prefHeight="80.0" prefWidth="57.0" text="80" onMouseClicked="#onBookCommentUserLikeNumLabelClciked"/>
+      <!--<Label fx:id="bookCommentUserLikeNumLabel" alignment="CENTER" layoutX="303.0" prefHeight="80.0" prefWidth="57.0" text="80" onMouseClicked="#onBookCommentUserLikeNumLabelClciked"/>-->
    </children>
 </fx:root>

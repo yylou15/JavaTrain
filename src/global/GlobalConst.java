@@ -1,5 +1,7 @@
 package global;
 
+// 以出现书籍图片为主
+// item_book size 130(min) x 360(pref)
 public class GlobalConst {
 
     public final static int SIZE_SCENE_WIDTH = 380;
@@ -13,7 +15,8 @@ public class GlobalConst {
     public final static String BOOKSTATUS_DENYED = "被拒绝";
     public final static String BOOKSTATUS_REQUESTED = "被申请";
     public final static String BOOKSTATUS_LENDING = "外借";
-
+    public final static String BOOKSTATUS_OVER = "已归还";
+    public final static String BOOKSTATUS_CONFIRMING = "归还状态待确认";
 
     public final static String TEST_BOOK_NAME = "长安乱";
     public final static String TEST_BOOK_AUTHOR = "韩寒 著";
@@ -25,16 +28,15 @@ public class GlobalConst {
     public final static String TEST_USER_NAME = "白云舒";
     public final static String TEST_USER_SCORE = "100分";
     public final static String TEST_USER_UPLOAD_TIME = "2018.4.2";
-    public final static String TEST_USER_LEFT = "未配妥剑，出门便已是江湖。";
+    public final static String TEST_USER_LEFT = "好书好心情。";
     public final static String TEST_REQUESTER_LEFT = "已执牛耳，俯瞰却再无豪情。";
     public final static String TEST_USER_COMMENT = "虎头蛇尾";
     public final static String TEST_USER_INTRO = "在于螺旋";
 
+    public final static String COMMON_IMG_BACKGROUD = "file:D:\\Lovecode\\Java\\JavaFX\\BookBorrowNew\\src\\res\\imgBg.png";
+
     public final static int SQL_RESULET_NOT_FOUND = 1;
     public final static int SQL_RESULET_QUERY_SUCCESS = 2;
-
-
-
 
     // Alert
     public final static String OPERATION_FAILED = "操作失败！请检查信息！";

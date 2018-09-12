@@ -1,5 +1,6 @@
 package Controller;
 
+import Utils.BookStatusInTable;
 import dao.BookDao;
 import global.BookStatus;
 import global.GlobalConst;
@@ -80,15 +81,9 @@ public class BookBorrow implements Initializable {
 //            System.out.println("hhh"+PageIndex.BOOK_BORROW);
 //        }
         for (Book book:rs){
-            boolean status;
-            if(book.getStatus()==1) {
-                 status = true;
-            }else{
-                 status = false;
-            }
-
-
-            bookItem = new BookItem(book.getBid(),book.getName(), book.getAuthor(), String.valueOf(book.getPagenum()), bookStatus, bookTime, "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1536639768170&di=75abf1f0a7671488a1936dc652b95863&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F16%2F06%2F64%2F83G58PICEbM_1024.jpg", PageIndex.BOOK_BORROW);
+            bookStatus = BookStatusInTable.getBookStatus(book.getStatus());
+            bookItem = new BookItem(book.getBid(),book.getName(), book.getAuthor(), String.valueOf(book.getScore()),
+                    bookStatus, bookTime, GlobalConst.TEST_BOOK_IMG_PATH, PageIndex.BOOK_BORROW, book.getOwnerid());
             bookItemList.add(bookItem);
         }
     }
@@ -102,7 +97,5 @@ public class BookBorrow implements Initializable {
         bookTime = GlobalConst.TEST_BOOK_TIME;
         // 访问数据库 拿到Model的List
         return BookDao.getValidBook();
-
-
     }
 }

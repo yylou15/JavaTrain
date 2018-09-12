@@ -8,14 +8,13 @@
 
 <?import Controller.RecordTop?>
 <?import Controller.CommonBottom?>
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="Controller.BookRecordRequest"
             prefHeight="400.0" prefWidth="600.0">
-            <stylesheets>
+
+    <stylesheets>
         <URL value="@global.css" />
     </stylesheets>
 
@@ -23,10 +22,13 @@
     <RecordTop fx:id="recordTop" layoutY="60"/>
     <ScrollPane layoutY="100" prefHeight="487.0" prefWidth="380.0">
         <content>
-            <VBox fx:id="vBox" />
+            <VBox fx:id="vBox" spacing="20"/>
 
         </content>
     </ScrollPane>
+
+    <Label fx:id="borrowRequestTitle" text="书籍借阅申请" />
+    <Label fx:id="returnConfirmTitle" text="归还确认申请" />
 
     <CommonBottom fx:id="commonBottom" />
 

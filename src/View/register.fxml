@@ -26,6 +26,6 @@
         <PasswordField layoutX="117.0" layoutY="320.0" fx:id="pwdTxt_pwd"/>
         <Label layoutX="52.0" layoutY="370.0" text="确认密码" />
         <PasswordField layoutX="117.0" layoutY="370.0" fx:id="pwdTxt_confirm"/>
-        <Button layoutX="133.0" layoutY="422.0" mnemonicParsing="false" text="注册并登陆" fx:id="registerAndLoginBtn" onAction="#onRegisterAndLoginBtnClicked"/>
+        <Button prefWidth="260" layoutX="60" layoutY="440" mnemonicParsing="false" text="完成注册" fx:id="registerAndLoginBtn" onAction="#onRegisterAndLoginBtnClicked"/>
     </children>
 </AnchorPane>

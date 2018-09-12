@@ -68,7 +68,7 @@ public class UserCollection implements Initializable {
 //        }
         for (Book one:Books){
             bookItemCollection = new BookItemCollection(
-                    one.getName(),one.getAuthor(),String.valueOf(one.getScore()),bookStatus,bookTime,bookImgPath,PageIndex.USER_COLLECTION
+                    one.getBid(),one.getName(),one.getAuthor(),String.valueOf(one.getScore()),bookStatus,bookTime,"res/"+ one.getBid() +".jpg",PageIndex.USER_COLLECTION
             );
 
             bookItemCollectionList.add(bookItemCollection);

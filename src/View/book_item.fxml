@@ -6,28 +6,26 @@
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
-<fx:root onMouseClicked="#onItemClicked" prefHeight="130.0" prefWidth="360.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseClicked="#onItemClicked" minHeight="130" prefWidth="360.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
        <stylesheets>
         <URL value="@global.css" />
     </stylesheets>
    <children>
-      <ImageView fx:id="bookItemImgView" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="bookItemImgView" fitHeight="130" fitWidth="130" pickOnBounds="true" preserveRatio="true" />
 
-       <HBox layoutX="150.0" spacing="25">
+       <HBox layoutX="135.0" spacing="25">
            <children>
-               <VBox fx:id="vBox" alignment="CENTER_LEFT" prefHeight="130.0" spacing="18.0">
+               <VBox fx:id="vBox" minHeight="130" maxWidth="225" spacing="8.5">
                    <children>
-                       <Label fx:id="bookItemNameLabel" text="长安乱" />
-                       <Label fx:id="bookItemAuthorLabel" text="韩寒 著" />
-                       <Label fx:id="bookItemScoreLabel" text="7.5分" />
-                   </children>
-               </VBox>
-
-               <VBox alignment="CENTER_LEFT" spacing="14.0">
-                   <children>
-                       <Label fx:id="bookItemStatusLabel" text="申请中" />
-                       <Label fx:id="bookItemTimeLabel" text="2018.10.3" />
-                       <Button fx:id="confirmBtn" text="确认归还" onMouseClicked="#onConfirmBtnClicked"/>
+                       <Label fx:id="bookItemNameLabel" text="长安乱" wrapText="true" />
+                       <Label fx:id="bookItemAuthorLabel" text="韩寒 著" wrapText="true"/>
+                       <Label fx:id="bookItemScoreLabel" text="7.5分" wrapText="true"/>
+                       <Label fx:id="bookItemHolderNameLabel" text="白云舒" wrapText="true"/>
+                       <Label fx:id="bookItemStatusLabel" text="申请中" wrapText="true"/>
+                       <Label fx:id="bookItemTimeLabel" text="2018.10.3" wrapText="true"/>
+                       <Label fx:id="bookItemReturnTimeLabel" text="2018.10.3" wrapText="true" visible="false" managed="false"/>
+                       <Label fx:id="bookItemUploadLeftLabel" text="只为你一人..." wrapText="true" visible="false" managed="false"/>
+                       <Button fx:id="confirmBtn" text="确认归还" onMouseClicked="#onConfirmBtnClicked" visible="false" managed="false"/>
                    </children>
                </VBox>
            </children>

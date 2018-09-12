@@ -1,5 +1,9 @@
 package Controller;
 
+import dao.BookDao;
+import dao.BookRecordDao;
+import dao.UserDao;
+import global.PageIndex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -8,13 +12,19 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Book;
+import model.BookRecord;
+import model.User;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
 public class BookBorrowConfirm implements Initializable {
 
+    public static int nowRid;
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -47,22 +57,44 @@ public class BookBorrowConfirm implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("BookBorrowConfirm initialize");
-        setData();
-        setLayout();
+        try {
+            setData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            setLayout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setData() {
-        getData();
-        infoTopNameLabel.setText(requesterName);
-        infoTopContactLabel.setText(requesterContact);
+    private void setData() throws Exception{
+//        getData();
+        BookRecord record = BookRecordDao.getRecordByRid(nowRid);
+        User user = UserDao.getInfoByUid(record.getUid());
+        Book book = BookDao.getBookByBid(record.getBid());
+        requesterName = user.getName();
+        requesterContact = user.getQq();
+        requestIntro = user.getIntroduction();
+        requesterScore = String.valueOf(user.getScore());
+        requestedBook = book.getName();
+        requesterLeft = record.getLeft();
+        requesterImgPath = user.getAvatarUrl();
+
+        infoTopNameLabel.setText("姓名：" + requesterName);
+        infoTopContactLabel.setText("QQ：" + requesterContact);
         infoTopIntroLabel.setText(requestIntro);
-        infoMiddleScoreLabel.setText(requesterScore);
+        infoMiddleScoreLabel.setText("信誉分：" + requesterScore);
         requestedBookLabel.setText(requestedBook);
         requesterLeftLabel.setText(requesterLeft);
+
+        Image img = new Image(requesterImgPath);
+        infoTopImgView.setImage(img);
         // img
     }
 
-    private void setLayout() {
+    private void setLayout() throws Exception{
 
     }
 
@@ -112,20 +144,21 @@ public class BookBorrowConfirm implements Initializable {
                 information.showAndWait();
             }
         }
-
     }
 
     private boolean lendBook() {
         System.out.println("lend book...");
+        BookDao.lendBook(BookInfo.nowBid,requesterName);
         return true;
     }
 
     private boolean denyLend() {
         System.out.println("deny lend...");
+        BookDao.denyLend(BookInfo.nowBid,requesterName);
         return true;
     }
 
-    private void getData() {
-        // sql
+    private void  getData() {
+
     }
 }

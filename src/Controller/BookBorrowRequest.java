@@ -1,12 +1,21 @@
 package Controller;
 
+import Utils.BookStatusInTable;
+import Utils.returnObj;
+import dao.BookDao;
+import dao.BookRecordDao;
+import dao.UserDao;
+import global.BookStatus;
 import global.PageIndex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import model.BookRecord;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -85,7 +94,27 @@ public class BookBorrowRequest implements Initializable {
     }
 
     private boolean sendRequest() {
-        System.out.println("send request...");
-        return true;
+        try{
+            System.out.println("send request...");
+            BookRecord record = new BookRecord();
+            record.setBid(BookInfo.nowBid);
+            Date day = new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            record.setCreateTime(df.format(day));
+            record.setOwnerid(BookDao.getBookByBid(BookInfo.nowBid).getOwnerid());
+            record.setStataus(BookStatusInTable.getIntForBookStatus(BookStatus.REQUESTING));
+            record.setUid(UserDao.getInfoByName(Login.username).getUid());
+            System.out.println("借书者申请留言： " + bookBorrowLeftTxt.getText());
+            record.setLeft(bookBorrowLeftTxt.getText());
+            returnObj rs = BookRecordDao.insertRecoord(record);
+            System.out.println(rs.getStatus());
+            System.out.println(rs.getMsg());
+
+            // 更新此书的状态
+            BookDao.updateBookStatus(BookInfo.nowBid, BookStatus.REQUESTING);
+            return true;
+        }catch (Exception E){
+            return false;
+        }
     }
 }

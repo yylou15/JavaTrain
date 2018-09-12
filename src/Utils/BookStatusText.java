@@ -22,6 +22,10 @@ public class BookStatusText {
                 return GlobalConst.BOOKSTATUS_REQUESTED;
             case LENDING:
                 return GlobalConst.BOOKSTATUS_LENDING;
+            case OVER:
+                return GlobalConst.BOOKSTATUS_OVER;
+            case CONFIRMING:
+                return GlobalConst.BOOKSTATUS_CONFIRMING;
             default:
                 return GlobalConst.BOOKSTATUS_FREE;
         }

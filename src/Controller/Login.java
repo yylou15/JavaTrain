@@ -57,9 +57,7 @@ public class Login implements Initializable{
         mainPane.setPrefHeight(GlobalConst.SIZE_SCENE_HEIGHT);
         labelId.setText("账号");
         labelPwd.setText("密码");
-        gridPane.setVgap(5);
-        gridPane.setHgap(5);
-        loginBtn.setText("登陆");
+        loginBtn.setText("登录");
         registerBtn.setText("立即注册");
 
         // layout

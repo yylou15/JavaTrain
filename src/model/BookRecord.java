@@ -7,6 +7,7 @@ public class BookRecord {
     private int bid;
     private int ownerid;
     private int stataus;
+    private String left;
 
     public int getRid() {
         return rid;
@@ -54,5 +55,13 @@ public class BookRecord {
 
     public void setStataus(int stataus) {
         this.stataus = stataus;
+    }
+
+    public String getLeft() {
+        return left;
+    }
+
+    public void setLeft(String left) {
+        this.left = left;
     }
 }

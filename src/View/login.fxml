@@ -14,10 +14,10 @@
         <URL value="@login.css" />
     </stylesheets>
    <children>
-      <GridPane fx:id="gridPane" layoutX="80.0" layoutY="223.0">
+      <GridPane fx:id="gridPane" layoutX="70.0" layoutY="220.0" hgap="10" vgap="5">
       </GridPane>
-      <Button fx:id="loginBtn" layoutX="72.0" layoutY="343.0" mnemonicParsing="false" onAction="#onLoginBtnClicked" prefHeight="27.0" prefWidth="256.0" text="Button" />
-      <Button fx:id="registerBtn" layoutX="72.0" layoutY="403.0" mnemonicParsing="false" onAction="#onRegisterBtnClicked" prefHeight="27.0" prefWidth="256.0" text="Button" />
+      <Button fx:id="loginBtn" layoutX="70.0" layoutY="343.0" mnemonicParsing="false" onAction="#onLoginBtnClicked" prefHeight="27.0" prefWidth="240.0" text="Button" alignment="CENTER"/>
+      <Button fx:id="registerBtn" layoutX="70.0" layoutY="403.0" mnemonicParsing="false" onAction="#onRegisterBtnClicked" prefHeight="27.0" prefWidth="240.0" text="Button" />
    </children>
    
 </AnchorPane>

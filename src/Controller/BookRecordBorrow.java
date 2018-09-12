@@ -1,16 +1,25 @@
 package Controller;
 
+import Utils.BookStatusInTable;
+import dao.BookDao;
+import dao.BookRecordDao;
+import dao.UserDao;
 import global.BookStatus;
 import global.GlobalConst;
 import global.PageIndex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import model.Book;
+import model.BookRecord;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static dao.BookDao.getAllBook;
 
 public class BookRecordBorrow implements Initializable {
     private Main app;
@@ -51,10 +60,14 @@ public class BookRecordBorrow implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("BookRecordBorrow initialize");
-        setLayout();
+        try {
+            setLayout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setLayout() {
+    private void setLayout() throws Exception{
         // top
 
         // content
@@ -65,21 +78,30 @@ public class BookRecordBorrow implements Initializable {
         commonBottom.setLayoutY(588);
     }
 
-    private void getBookList() {
+    private void getBookList() throws Exception{
         bookItemList = new ArrayList<>();
-        getData();
-        for(int i=0; i<10; i++) {
-//            bookItem = new BookItem(bookName, bookAuthor, bookScore, bookStatus, bookTime, bookImgPath, PageIndex.BOOK_RECORD_BORROW);
-////            bookItem.setBelongId(PageIndex.BOOK_RECORD_BORROW);
-//            bookItemList.add(bookItem);
-        }
-    }
 
-    private void getData() {
-        bookName = GlobalConst.TEST_BOOK_NAME;
-        bookAuthor = GlobalConst.TEST_BOOK_AUTHOR;
-        bookScore = GlobalConst.TEST_BOOK_SCORE;
-        bookStatus = BookStatus.FREE;
-        bookTime = GlobalConst.TEST_BOOK_TIME;
+        // 1. uid
+        int userId = UserDao.getInfoByName(Login.username).getUid();
+        List<BookRecord> rs = BookRecordDao.getRecordByUid(userId); // 所有的借书记录
+
+        // 3. 再过滤Status 这里在前端操作没什么问题了
+        Iterator<BookRecord> iterator = rs.iterator();
+        while(iterator.hasNext()) {
+            BookRecord bookRecord = iterator.next();
+            BookStatus status = BookStatusInTable.getBookStatus(bookRecord.getStataus());
+            if(status==BookStatus.REQUESTING || status==BookStatus.BORROWING || status==BookStatus.DENIED || status==BookStatus.OVER || status==BookStatus.CONFIRMING)
+                continue;
+            else
+                iterator.remove();
+        }
+
+        for(BookRecord record : rs) {
+            // 4. 再根据bid获取书籍信息
+            Book book = BookDao.getBookByBid(record.getBid());
+            bookStatus = BookStatusInTable.getBookStatus(record.getStataus()); // 通过Book也是一样的
+            bookItem = new BookItem(book.getBid(),book.getName(), book.getAuthor(), String.valueOf(book.getScore()), bookStatus, record.getCreateTime().split(" ")[0], GlobalConst.TEST_BOOK_IMG_PATH, PageIndex.BOOK_RECORD_BORROW, book.getOwnerid());
+            bookItemList.add(bookItem);
+        }
     }
 }

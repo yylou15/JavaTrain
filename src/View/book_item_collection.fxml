@@ -27,7 +27,7 @@
                     <children>
                         <Label fx:id="bookItemStatusLabel" text="申请中" />
                         <Label fx:id="bookItemTimeLabel" text="2018.10.3" />
-                        <Button fx:id="cancelBtn" text="取消收藏" onMouseClicked="#onCancelBtnClicked"/>
+                        <!--<Button fx:id="cancelBtn" text="" onMouseClicked="#onCancelBtnClicked"/>-->
                     </children>
                </VBox>
            </children>

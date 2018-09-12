@@ -22,7 +22,7 @@
         <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
         <ScrollPane layoutY="60.0" prefHeight="580.0" prefWidth="380.0">
             <content>
-                <VBox fx:id="vBox" />
+                <VBox fx:id="vBox" spacing="20"/>
 
             </content>
         </ScrollPane>

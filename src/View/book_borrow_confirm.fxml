@@ -14,7 +14,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="640" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookBorrowConfirm">
-                 <stylesheets>
+    <stylesheets>
         <URL value="@global.css" />
     </stylesheets>
    <children>
@@ -25,7 +25,7 @@
                <Label fx:id="borrowConfirmTitle" prefHeight="60.0" prefWidth="380.0" text="借书确认" alignment="CENTER" />
                <Button fx:id="toBackBtn" onAction="#onToBackBtnClicked" prefHeight="60.0" prefWidth="60" text="back" />
                <ImageView fx:id="infoTopImgView" fitHeight="132.0" fitWidth="132.0"  layoutY="65" pickOnBounds="true" preserveRatio="true" />
-               <VBox layoutX="180" layoutY="75" spacing="15">
+               <VBox layoutX="180" layoutY="75" spacing="20">
                   <children>
                       <Label fx:id="infoTopNameLabel" text="白云舒" />
                       <Label fx:id="infoTopContactLabel" text="131556160" />
@@ -37,7 +37,7 @@
    
        <Label fx:id="infoMiddleScoreLabel" alignment="CENTER" layoutY="185.0" prefWidth="380" text="100分">
            <font>
-               <Font size="78.0" />
+               <Font size="50.0" />
            </font>
        </Label>
 

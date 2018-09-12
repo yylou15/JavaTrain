@@ -23,6 +23,7 @@ public class AddBookComment implements Initializable {
     public void getHolder() {
 
     }
+
     private PageIndex fromId;
     public void setFromId(PageIndex fromId) {
         this.fromId = fromId;
@@ -90,7 +91,7 @@ public class AddBookComment implements Initializable {
     private boolean checkValid() {
         try {
             Integer.parseInt(bookScore);
-        }catch (Exception E){
+        } catch (Exception E){
             return false;
         }
         if(bookScore.equals("")||bookWords.equals("")){

@@ -37,6 +37,7 @@ public class BookItemRecommend extends AnchorPane implements Initializable {
     @FXML
     private ImageView bookItemImgView;
 
+    private int bid;
     private String bookName, bookScore, bookStatusStr;
     private BookStatus bookStatus;
     private String bookImgPath;
@@ -54,7 +55,8 @@ public class BookItemRecommend extends AnchorPane implements Initializable {
         }
     }
 
-    public BookItemRecommend(String bookName, String bookScore, BookStatus bookStatus, String bookImgPath, PageIndex belongId) {
+    public BookItemRecommend(int bid, String bookName, String bookScore, BookStatus bookStatus, String bookImgPath, PageIndex belongId) {
+        this.bid = bid;
         this.bookName = bookName;
         this.bookScore = bookScore;
         this.bookStatus = bookStatus;
@@ -78,12 +80,15 @@ public class BookItemRecommend extends AnchorPane implements Initializable {
     }
 
     private void setData() {
-        bookItemNameLabel.setText(bookName);
-        bookItemScoreLabel.setText(bookScore);
+        bookItemNameLabel.setText("《" + bookName + "》");
+        bookItemScoreLabel.setText("评分：" + bookScore);
         bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
         bookItemStatusLabel.setText(bookStatusStr);
+        String s = "res/" + String.valueOf(bid) + ".jpg";
+        System.out.println(s);
+        bookImg = new Image(s);
 //        bookImg = new Image(GlobalConst.TEST_BOOK_IMG_PATH);
-//        bookItemImgView.setImage(bookImg);
+        bookItemImgView.setImage(bookImg);
     }
 
     private void setLayout() {
@@ -93,6 +98,7 @@ public class BookItemRecommend extends AnchorPane implements Initializable {
     @FXML
     private void onItemClicked() {
         System.out.println("BookItemRecommend Clicked");
+        BookInfo.nowBid = bid;
         System.out.println(belongId);
         app.showBookInfo(belongId);
     }

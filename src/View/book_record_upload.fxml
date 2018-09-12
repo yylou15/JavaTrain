@@ -21,7 +21,7 @@
         <RecordTop fx:id="recordTop" layoutY="60"/>
         <ScrollPane layoutY="100" prefHeight="487.0" prefWidth="380.0">
             <content>
-                <VBox fx:id="vBox" />
+                <VBox fx:id="vBox" spacing="20"/>
 
             </content>
         </ScrollPane>

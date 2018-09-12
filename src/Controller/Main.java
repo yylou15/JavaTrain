@@ -336,6 +336,10 @@ public class Main extends Application {
         root.setApp(this);
     }
 
+    public void registerBookItemConfirm(BookItemConfirm root) {
+        root.setApp(this);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;

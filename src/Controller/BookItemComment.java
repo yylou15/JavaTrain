@@ -1,5 +1,6 @@
 package Controller;
 
+import dao.UserDao;
 import global.GlobalConst;
 import global.PageIndex;
 import javafx.fxml.FXML;
@@ -28,8 +29,8 @@ public class BookItemComment extends AnchorPane implements Initializable {
 
     @FXML
     private Label bookCommentUserNameLabel;
-    @FXML
-    private Label bookCommentUserLikeNumLabel;
+//    @FXML
+//    private Label bookCommentUserLikeNumLabel;
     @FXML
     private Label bookCommentUserTimeLabel;
     @FXML
@@ -94,14 +95,19 @@ public class BookItemComment extends AnchorPane implements Initializable {
 
     private void setData() {
         bookCommentUserNameLabel.setText(userName);
-        bookCommentUserScoreLabel.setText(userGivenScore);
+        bookCommentUserScoreLabel.setText(userGivenScore  + "分");
         bookCommentUserTimeLabel.setText(userCreateTime);
         bookCommentUserComLabel.setText(userComment);
-        bookCommentUserLikeNumLabel.setText(userLikeNum);
+
+        userImg = new Image(userImgPath);
+        bookCommentUserImgView.setImage(userImg);
+
+//        bookCommentUserLikeNumLabel.setText(userLikeNum);
         // img
     }
 
     private void setLayout() {
+
     }
 
     @FXML

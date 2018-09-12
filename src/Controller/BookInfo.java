@@ -1,5 +1,7 @@
 package Controller;
 
+import Utils.BookStatusInTable;
+import dao.BookCommentDao;
 import dao.BookDao;
 import dao.UserDao;
 import global.BookStatus;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.image.*;
+import model.User;
+
 // 可以通过一个showBookInfo的参数来回到那个到它这边的页面
 public class BookInfo implements Initializable {
 
@@ -29,11 +33,13 @@ public class BookInfo implements Initializable {
     }
     public void getHolder() {
         app.invokeTest();
-        app.registerBookItemBorrow(bookBorrowList.get(0));
-        app.registerBookItemComment(bookCommentList.get(0));
-        for(BookItemBorrow bookItemBorrow : bookBorrowList) {
+//        if(bookBorrowList.size()>0)
+            app.registerBookItemBorrow(bookItemBorrow);
+//        if(bookCommentList.size()>0)
+            app.registerBookItemComment(bookItemComment);
+//        for(BookItemBorrow bookItemBorrow : bookBorrowList) {
             bookItemBorrow.setBelongId(fromId);
-        }
+//        }
     }
     private PageIndex fromId;
     public void setFromId(PageIndex fromId) {
@@ -89,7 +95,12 @@ public class BookInfo implements Initializable {
         bookimg.setImage(image);
         System.out.println("BookInfo initialize");
         setData();
-        setLayout();
+        try {
+            setLayout();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 收藏
         try {
             if(BookDao.querycollection(UserDao.getInfoByName(Login.username).getUid() ,BookInfo.nowBid)){
                 System.out.println("你已经收藏了这本书！");
@@ -105,6 +116,7 @@ public class BookInfo implements Initializable {
 
     private void setData() {
         getBookInfoData();
+
         bookNameTxt.setText(bookName);
         bookAuthorTxt.setText(bookAuthor);
         bookPressTxt.setText(bookPress);
@@ -112,11 +124,12 @@ public class BookInfo implements Initializable {
         bookBorrowAmountTxt.setText(bookBorrowAmount);
         bookScoreTxt.setText(bookScore);
         bookIntroTxt.setText(bookIntro);
+
         // img
     }
 
 
-    private void setLayout() {
+    private void setLayout() throws Exception{
         // book info and GridPane
         bookInfoPane.setVgap(15);
         bookInfoPane.setHgap(20);
@@ -136,9 +149,9 @@ public class BookInfo implements Initializable {
 
         // book comment
         getBookCommentList();
-        bookCommentVBox.getChildren().addAll(bookCommentList);
+        bookCommentVBox.getChildren().add(bookItemComment);
         getBookBorrowList();
-        bookBorrowListVBox.getChildren().addAll(bookBorrowList);
+        bookBorrowListVBox.getChildren().add(bookItemBorrow);
 
     }
 
@@ -230,36 +243,64 @@ public class BookInfo implements Initializable {
         return true;
     }
 
-    private void getBookCommentList() {
+    private void getBookCommentList() throws Exception{
         bookCommentList = new ArrayList<>();
-        getBookCommentData();
-        for(int i=0; i<1; i++) {
-            bookItemComment = new BookItemComment(userName, userGivenScore, userCreateTime, userComment, userLikeNum, userImgPath, fromId);
-            bookCommentList.add(bookItemComment);
+//        getBookCommentData();
+        List<model.BookComment> rs = BookCommentDao.getCommentsByBookId(nowBid);
+        if(rs.size() > 0) {
+            model.BookComment bookComment = rs.get(0);
+            userImgPath = UserDao.getAvatarUrl(bookComment.getUserName());
+//            ownerLeft 要找到Record才行了
+//            for(int i=0; i<1; i++) {
+                bookItemComment = new BookItemComment(bookComment.getUserName(), String.valueOf(bookComment.getScore()), bookComment.getCreateTime().split(" ")[0], bookComment.getComment(), userLikeNum, userImgPath, fromId);
+//                bookCommentList.add(bookItemComment);
+//            }
+        } else {
+            bookItemComment = new BookItemComment();
         }
+
     }
 
-    private void getBookBorrowList() {
+    private void getBookBorrowList() throws Exception{
         bookBorrowList = new ArrayList<>();
-        getBookBorrowData();
-        for(int i=0; i<1; i++) {
-            bookItemBorrow = new BookItemBorrow(onwerName, onwerScore, onwerTime, onwerLeft, onwerBookStatus, onwerImgPath, fromId, PageIndex.BOOK_INFO);
-//            bookItemBorrow.setRootId(PageIndex.BOOK_INFO);
-            bookBorrowList.add(bookItemBorrow);
-        }
+//        getBookBorrowData();
+        Book book = BookDao.getBookByBid(nowBid);
+        User user = UserDao.getInfoByUid(book.getOwnerid());
+
+        bookStatus = BookStatusInTable.getBookStatus(book.getStatus());
+        onwerImgPath = UserDao.getAvatarUrl(user.getName());
+        onwerLeft = GlobalConst.TEST_USER_LEFT;
+
+        bookItemBorrow = new BookItemBorrow(user.getName(), String.valueOf(user.getScore()), GlobalConst.TEST_BOOK_TIME, onwerLeft, bookStatus , onwerImgPath, fromId, PageIndex.BOOK_INFO);
     }
 
     private void getBookInfoData() {
+        // 获取基本信息
+        Book book = new Book();
         try {
-            Book book = BookDao.getBookByBid(nowBid);
+            book = BookDao.getBookByBid(nowBid);
             bookName = book.getName();
             bookAuthor = book.getAuthor();
             bookPress = GlobalConst.TEST_BOOK_PRESS;
             bookBorrowAmount = String.valueOf(book.getCount());
             bookIntro = book.getIntroduction();
             bookScore = String.valueOf(book.getScore());
-        }catch (Exception E){
+        } catch (Exception E){
             return;
+        }
+        // 获取空闲数
+        try {
+            List<Book> books = BookDao.getFreeBookByName(book.getName());
+            int cnt = 0;
+            for(Book book1 : books) {
+                BookStatus status = BookStatusInTable.getBookStatus(book1.getStatus());
+                if(status!=BookStatus.BORROWING && status!=BookStatus.LENDING) {
+                    cnt++;
+                }
+            }
+            bookLeftNum = String.valueOf(cnt);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 //        bookName = GlobalConst.TEST_BOOK_NAME;
 //        bookAuthor = GlobalConst.TEST_BOOK_AUTHOR;

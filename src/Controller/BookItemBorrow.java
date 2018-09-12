@@ -104,13 +104,13 @@ public class BookItemBorrow extends AnchorPane implements Initializable {
 
     private void setData() {
         bookBorrowUserNameLabel.setText(onwerName);
-        bookBorrowUserScoreLabel.setText(onwerScore);
+        bookBorrowUserScoreLabel.setText(onwerScore + "分");
         bookBorrowUserTimeLabel.setText(onwerTime);
         bookBorrowUserComLabel.setText(onwerLeft);
         bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
-        bookBorrowIsOk.setText(bookStatusStr); // 加一个归还时间...不知道这个方不方便拉去
-//        bookImg = new Image(GlobalConst.TEST_BOOK_IMG_PATH);
-//        bookItemImgView.setImage(bookImg);
+        bookBorrowIsOk.setText(bookStatusStr);
+        onwerImg = new Image(onwerImgPath);
+        bookBorrowUserImgView.setImage(onwerImg);
     }
 
     private void setLayout() {

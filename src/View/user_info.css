@@ -1,7 +1,7 @@
 /*
  * 设置背景图片
  */
-.root {-fx-background-image: url("../res/21.jpg");
+.root {-fx-background-image: url("../res/3.jpg");
 	-fx-background-repeat: no-repeat;
 }
 
